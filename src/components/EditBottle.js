@@ -17,7 +17,7 @@ export default class EditBottle extends Component {
     render() {
         return (
             <div>
-                edit the bottle
+                edit the bottled
             </div>
         )
     }
