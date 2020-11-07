@@ -44,8 +44,9 @@ class App extends Component {
   //add a new bottle for sell
   addBottle = (e) => {
     e.preventDefault()
-    const {name, year, price, description, country, region, grappeVariety, color, image,} = e.target
-    console.log(image.files)
+    const {name, year, price, userSeller, description, country, region, grappeVariety, color, image,} = e.target
+    // const {loggedInUser} = this.state
+      console.log(image.files)
     // //this is an array so you have to do it like this: 
 
     let imageFile = image.files[0];
@@ -69,7 +70,8 @@ class App extends Component {
         region: region.value,
         grappeVariety: grappeVariety.value,
         color: color.value,
-        image: response.data.image
+        image: response.data.image,
+        // userSeller: userSeller.loggedInUser.username,
       }
 
       axios.post(`http://localhost:3040/api/add-bottle`, newBottle)
@@ -209,10 +211,11 @@ handleUnMount = () => {
       <div>
         <NaviBar loggedInUser={loggedInUser} onLogout={this.handleLogOut}/>
         <p></p>
-        {loggedInUser ? <p>User is: {loggedInUser.username} </p>: null}
+        {loggedInUser ? <p>User is: {loggedInUser.username} </p>: <p>null</p>}
+
         <Switch>
         <Route exact path="/" render={() => {
-              return <WineBottles wines={wines} /> 
+              return <WineBottles loggedInUser={loggedInUser} wines={wines} /> 
         }} />
         <Route path="/sign-in" render={(rProps) => {
           return <SignIn onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignIn={this.handleSignIn} {...rProps} />

@@ -29,9 +29,9 @@ export default function NaviBar(props) {
       <Link className="navbar-item has-text-white" to={"/add-bottle"}>Sell</Link>
 
 
-      <a className="navbar-item has-text-white">
+      <Link className="navbar-item has-text-white" to={"/profile"}>
         Profile
-      </a>
+      </Link>
     </div>
 
     <div className="navbar-end">

@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function WineBottles(props) {
   //console.log(props.wines);
+
+
   return (
     <body className="body">
       <Carousel>
@@ -41,20 +43,20 @@ export default function WineBottles(props) {
       <h1>Wine Connoisseur</h1>
             <p>Exceptionnal Vintage Wine waiting to find a new owner.</p>
         <p>
-          <Button variant="primary">Learn more</Button>
+          <Link variant="primary" to={"/add-bottle"}>Sell a bottle</Link>
         </p>
       </Jumbotron>
 
       <div className="box">
         <h1>WINE BOTTLES PAGE</h1>
-        <Link to={"/add-bottle"}>Sell a bottle</Link>
-
+        
+        <p>{props.loggedInUser ? <p>User is: {props.loggedInUser.username} </p>: <p>null</p>}</p>
         <div className="middlebox">
           {props.wines.map((bottle) => {
             return (
               <div>
                 <div className="subbox">
-                  <div className="cardo wine-card" style={{ width: "18em" }}>
+                  <div className="cardo wine-card" style={{ width: "18em"}}>
                     <div className="card-image">
                       <figure className="image is-4by3">
                         <img src={bottle.image} alt="Placeholder image" />
@@ -63,7 +65,7 @@ export default function WineBottles(props) {
                     <div className="card-content">
                       <div className="media">
                         <div className="media-content">
-                          <p className="title is-4">
+                          <p className="title is-4" style={{ height: "2em"}}>
                             <Link to={`/bottle/${bottle._id}`}>
                               <p key={bottle._id}>{bottle.name}</p>
                             </Link>
@@ -86,6 +88,7 @@ export default function WineBottles(props) {
                         <p>
                           <b>Origin: </b>
                           {bottle.country}
+                          {bottle.userSeller}
                         </p>
                         <time datetime="2016-1-1">1 Jan 2016</time>
                       </div>

@@ -28,7 +28,7 @@ export default class BottleDetails extends Component {
 
 
     render() {
-        const {_id, name, year, price, description, country, region, grappeVariety, color, image} = this.state.wine
+        const {_id, name, year, price, userSeller, description, country, region, grappeVariety, color, image} = this.state.wine
         const {loggedInUser} = this.props
 
 
@@ -45,6 +45,8 @@ export default class BottleDetails extends Component {
                 <p>Name: {name}</p>
                 <p>Year: {year}</p>
                 <p>Price: {price}</p>
+                <p>Seller: {userSeller}</p>
+
 
                 <Link to={`/bottle/${_id}/edit`}><button>Edit</button></Link>
                 <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
