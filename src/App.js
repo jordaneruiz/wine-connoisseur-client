@@ -9,7 +9,10 @@ import Home from './components/Home'
 import WineBottles from './components/WineBottles'
 import BottleDetails from './components/BottleDetails'
 import EditBottle from './components/EditBottle';
-import BuyBottleForm from "./components/BuyBottleForm";
+import Profile from './components/Profile';
+import AddBottle from './components/AddBottle';
+
+// import BuyBottleForm from "./components/BuyBottleForm";
 
 
 
@@ -38,7 +41,76 @@ class App extends Component {
  
 
 
+  //add a new bottle for sell
+  addBottle = (e) => {
+    e.preventDefault()
+    const {name, year, price, description, country, region, grappeVariety, color, picture,} = e.target
+    // console.log(image.files)
+    // //this is an array so you have to do it like this: 
 
+    // let imageFile = image.files[0];
+
+    // //create a form data first (its a class in JS to create a form and create a post request)
+    // let uploadForm = new FormData()
+    // uploadForm.append('imageUrl', imageFile)
+
+    // //now we create the axios post request
+    // axios.post(`${API_URL}/upload`, uploadForm)
+    // .then((response) => {
+    //   //so first we uploaded with axios.post request
+    //   console.log(response.data)
+      //whatever image we get here, we have to create here: 
+      let newBottle = {
+        name: name.value,
+        year: year.value,
+        price: price.value,
+        description: description.value,
+        country: country.value,
+        region: region.value,
+        grappeVariety: grappeVariety.value,
+        color: color.value,
+        picture: picture.value,
+      }
+  
+      axios.post(`http://localhost:3040/api/add-bottle`, newBottle)
+      .then((response) =>{
+          this.setState({
+            wines: [ response.data , ...this.state.wines]
+          }, () => {
+            this.props.history.push('/')
+          })      
+      })  
+  }
+
+
+  editBottle = (bottle) => {
+    axios.patch(`http://localhost:3040/api/bottle/${bottle._id}`, {
+      name: bottle.name,
+        year: bottle.year,
+        price: bottle.price,
+        description: bottle.description,
+        country: bottle.country,
+        region: bottle.region,
+        grappeVariety: bottle.grappeVariety,
+        color: bottle.color,
+        picture: bottle.picture,
+    })
+    .then((resp) => {
+      console.log("resp edit is: ", resp)
+        let updatedWines = this.state.wines.map((myWine) => {
+          if (myWine._id == bottle._id) {
+            myWine = bottle
+          }
+          return myWine
+        })
+
+        this.setState({
+          wines: updatedWines
+        }, () => {
+          this.props.history.push('/')
+        })
+    })
+  }
 
   handleSignUp = (e) => {
     e.preventDefault()
@@ -75,7 +147,7 @@ handleSignIn = (e) => {
   password: password.value
   })  
   .then((response) => {
-    console.log(response)
+    //console.log(response)
     this.setState({
       loggedInUser: response.data
     
@@ -154,12 +226,24 @@ handleUnMount = () => {
         }}/>
 
         <Route path="/bottle/:bottleId/edit" render={(rprops) => {
+          return <EditBottle onEdit={this.editBottle} {...rprops}/>
+        }}/>
+
+        <Route path="/bottle/:bottleId/edit" render={(rprops) => {
           return <EditBottle {...rprops}/>
         }}/>
 
-        <Route path="/bottle/:bottleid/buy" render={(rprops) => {
-          return <BuyBottleForm {...rprops}/>
+        <Route path="/profile" render={(rprops) => {
+          return <Profile {...rprops}/>
         }}/>
+
+        <Route pass="/add-bottle" render={(rprops) => {
+          return <AddBottle loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}/>
+        }}/>
+
+        {/* <Route path="/bottle/:bottleid/buy" render={(rprops) => {
+          return <BuyBottleForm {...rprops}/>
+        }}/> */}
 
         {/* <Route path="" */}
      </Switch>
