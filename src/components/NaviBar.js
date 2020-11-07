@@ -10,39 +10,39 @@ export default function NaviBar(props) {
 
 
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-  <Link class="navbar-item" to="/" class="navbar-item">
-      <img src="LOGO3.png" height="200"/>
+<nav className="navbar is-fixed-top has-background-danger-dark height" role="navigation" aria-label="main navigation">
+  <div className="navbar-brand">
+  <Link className="navbar-item" to="/" className="navbar-item">
+      <img src="LogoW1.png"/>
   </Link>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <Link class="navbar-item" to="/">Home</Link>
-      <Link class="navbar-item" to={"/add-bottle"}>Sell</Link>
+  <div id="navbarBasicExample" className="navbar-menu ">
+    <div className="navbar-start">
+      <Link className="navbar-item has-text-white" to="/">Home</Link>
+      <Link className="navbar-item has-text-white" to={"/add-bottle"}>Sell</Link>
 
 
-      <a class="navbar-item">
+      <a className="navbar-item has-text-white">
         Profile
       </a>
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
+    <div className="navbar-end">
+      <div className="navbar-item">
+        <div className="buttons">
         { props.loggedInUser ? (
-        <button class="button is-light" onClick={props.onLogout}>Logout</button>
+        <button className="button is-light has-background-light has-text-danger-dark" onClick={props.onLogout}>Logout</button>
       ) : (
         <>
-          <Link class="button is-primary" to="/sign-in">Sign In</Link>
-          <Link class="button is-primary" to="/sign-up">Sign Up</Link>
+          <Link className="button is-primary has-background-light has-text-danger-dark" to="/sign-in">Sign In</Link>
+          <Link className="button is-primary has-background-light has-text-danger-dark" to="/sign-up">Sign Up</Link>
           </>
       )}
         </div>
@@ -70,3 +70,21 @@ export default function NaviBar(props) {
    
   );
 }
+
+
+
+// <>
+//   <Navbar bg="light" variant="light">
+//     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+//     <Nav className="mr-auto">
+//       <Nav.Link href="#home">Home</Nav.Link>
+//       <Nav.Link href="#features">Features</Nav.Link>
+//       <Nav.Link href="#pricing">Pricing</Nav.Link>
+//     </Nav>
+//     <Form inline>
+//       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+//       <Button variant="outline-primary">Search</Button>
+//     </Form>
+//   </Navbar>
+// </> 
+// import { Navbar,  Form, FormControl, Nav, Button } from 'react-bootstrap';

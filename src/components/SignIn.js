@@ -9,9 +9,8 @@ export default function SignIn(props) {
   }, []);
 
   return (
+    <section className="margin-form">
     <form onSubmit={props.onSignIn}>
-
-
         <div class="container">
         <div class="left">
             <div class="header">
@@ -22,7 +21,8 @@ export default function SignIn(props) {
             <input name="email" onChange={props.onUnmount} type="text" class="form-field animation a3" placeholder="Email Address"/>
             <input name="password" type="password" class="form-field animation a4" placeholder="Password"/>
             <p class="animation a5"><a href="#">Forgot Password</a></p>
-            <button type="submit" class="animation a6">LOGIN</button>
+            {/* <button type="submit" class="animation a6">LOGIN</button> */}
+            <div class="bbuttons"><button type="submit" class="btn-hover color-11 animation a6">LOGIN</button></div>
             </div>
         </div>
         <div class="right-signin"></div>
@@ -60,5 +60,6 @@ export default function SignIn(props) {
 
 
     </form>
+    </section>
   );
 }

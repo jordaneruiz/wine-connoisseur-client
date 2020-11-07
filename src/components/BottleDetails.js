@@ -14,7 +14,7 @@ export default class BottleDetails extends Component {
         console.log(this.props)//will list history, location and match 
         console.log(this.props.match)
         console.log(this.props.match.params.bottleId)
-
+        
         let id = this.props.match.params.bottleId
 
         Axios.get(`http://localhost:3040/api/bottle/${id}`)
@@ -28,7 +28,7 @@ export default class BottleDetails extends Component {
 
 
     render() {
-        const {_id, name, year, price, description, country, region, grappeVariety, color, picture} = this.state.wine
+        const {_id, name, year, price, description, country, region, grappeVariety, color, image} = this.state.wine
         const {loggedInUser} = this.props
 
 
@@ -38,6 +38,9 @@ export default class BottleDetails extends Component {
 
 
         return (
+            <body className="body">
+
+            
             <div>
                 <p>Name: {name}</p>
                 <p>Year: {year}</p>
@@ -48,6 +51,7 @@ export default class BottleDetails extends Component {
                 <button>Buy</button>
                 <button>Message Seller</button>
             </div>
+        </body>
         )
     }
 }

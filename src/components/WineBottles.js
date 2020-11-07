@@ -1,44 +1,117 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import "bulma/css/bulma.css";
+import { Carousel, Jumbotron, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function WineBottles(props) {
   //console.log(props.wines);
   return (
-    <div className="box">
-      <h1>WINE BOTTLES PAGE</h1>
-      <Link to={"/add-bottle"}>Sell a bottle</Link>
+    <body className="body">
+      <Carousel>
+        <Carousel.Item>
+          <img className="d-block w-100" src="WINE3.png" alt="First slide" />
+          <Carousel.Caption>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src="WINE1.png" alt="Third slide" />
 
-      <div className="middlebox">
-      {
-        props.wines.map((bottle) => {
-        return (
-          
-          <div className="subbox">
-          <Link to={`/bottle/${bottle._id}`}>
-            <p key={bottle._id}>{bottle.name}</p>
-          </Link>
+          <Carousel.Caption>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img className="d-block w-100" src="WINE2.png" alt="Third slide" />
 
-          <div className="flex flex-wrap -m-3"> 
-              <div className="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
-                <div className="bg-cover h-48" style={{backgroundImage: "url(https://images.unsplash.com/photo-1523978591478-c753949ff840?w=900);"}}></div>
-                <div className="p-4 flex-1 flex flex-col" >
-                    <h3 className="mb-4 text-2xl">My heading</h3>
-                    <div className="mb-4 text-grey-darker text-sm flex-1">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+          <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+
+      <Jumbotron>
+      <h1>Wine Connoisseur</h1>
+            <p>Exceptionnal Vintage Wine waiting to find a new owner.</p>
+        <p>
+          <Button variant="primary">Learn more</Button>
+        </p>
+      </Jumbotron>
+
+      <div className="box">
+        <h1>WINE BOTTLES PAGE</h1>
+        <Link to={"/add-bottle"}>Sell a bottle</Link>
+
+        <div className="middlebox">
+          {props.wines.map((bottle) => {
+            return (
+              <div>
+                <div className="subbox">
+                  <div className="cardo wine-card" style={{ width: "18em" }}>
+                    <div className="card-image">
+                      <figure className="image is-4by3">
+                        <img src={bottle.image} alt="Placeholder image" />
+                      </figure>
                     </div>
-                    <a href="#" className="border-t border-grey-light pt-2 text-xs text-grey hover:text-red uppercase no-underline tracking-wide" >Twitter</a>
-                </div>
-                </div>  
-            </div>
-            </div>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4">
+                            <Link to={`/bottle/${bottle._id}`}>
+                              <p key={bottle._id}>{bottle.name}</p>
+                            </Link>
+                          </p>
+                          <p className="subtitle is-6">{bottle.userSeller}</p>
+                        </div>
+                      </div>
 
-          </div>
-        );
-      })}
+                      <div className="content">
+                        {/* {bottle.description} */}
+                        <br />
+                        <p>
+                          <b>Vintage: </b> {bottle.year}
+                        </p>
+                        <p>
+                          <b>Price: </b>
+                          <span>$</span>
+                          {bottle.price}
+                        </p>
+                        <p>
+                          <b>Origin: </b>
+                          {bottle.country}
+                        </p>
+                        <time datetime="2016-1-1">1 Jan 2016</time>
+                      </div>
+                    </div>
+                    <footer className="card-footer">
+                      <a href="#" className="card-footer-item">
+                        Save
+                      </a>
+                      <Link
+                        to={`/bottle/${bottle._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
+                      <a href="#" className="card-footer-item">
+                        Buy
+                      </a>
+                    </footer>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </body>
   );
 }
 

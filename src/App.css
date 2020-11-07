@@ -37,7 +37,14 @@
   }
 }
 
+.body {
+  margin-top: 0px
+}
 
+
+.height {
+  height: 80px;
+}
 /* SignIn Form */
 /* @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
@@ -57,7 +64,14 @@ body {
 }  */
 
 
+.margin-form {
+  margin-left: 150px; 
+  margin-right: 0px; 
+}
 
+.left{
+  margin-right: 100px;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Rubik:400,500&display=swap');
 
@@ -103,6 +117,15 @@ body {
   background-position: center;
 }
 
+.right-add {
+  flex: 1;
+  background-color: black;
+  transition: 1s;
+  background-image: url(https://image.freepik.com/free-photo/pouring-wine-into-glass_23-2148722574.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .header > h2 {
   margin: 0;
@@ -188,6 +211,31 @@ body {
   animation-delay: 2.5s;
 }
 
+.a7 {
+  animation-delay: 2.6s;
+}
+
+.a8 {
+  animation-delay: 2.7s;
+}
+
+.a9 {
+  animation-delay: 2.8s;
+}
+
+
+.a10 {
+  animation-delay: 2.9s;
+}
+
+.a11 {
+  animation-delay: 3s;
+}
+
+.a12 {
+  animation-delay: 3.1s;
+}
+
 @keyframes move {
   0% {
     opacity: 0;
@@ -232,25 +280,103 @@ p {
 }
 
 .box {
-  border: solid red 2px;
+  /* border: solid red 2px; */
 
 }
 
 .middlebox{
-  border: solid yellow 2px;
-  display: flex; 
+  /* border: solid yellow 2px; */
+  display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+  /* display: flex; 
+  flex-direction: row;
+  margin-top: 20px; */
 }
 
 .subbox{
-  border: solid green 2px;
-  display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-items: center;
-	align-content: space-between;
-  margin: 30px
+  /* border: solid green 2px; */
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; */
+  margin: 0;
+  padding: 0;
 }
 
+.cardo {  
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+    color: #4a4a4a;
+    max-width: 100%;
+}
+
+.wine-card {
+  margin: 20px;
+}
+
+/* //boxes  */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Button effect */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.bbuttons {
+  margin: 10%;
+  text-align: center;
+}
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align:center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+
+.btn-hover.color-11 {
+     background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}

@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 function SignUp(props){
     return (
+        <section className="margin-form">
         <form onSubmit={props.onSignUp}>
 
 
@@ -17,7 +18,8 @@ function SignUp(props){
                     <input name="email" type="text" class="form-field animation a4" placeholder="Email Address"/>
                     <input name="password" type="password" class="form-field animation a5" placeholder="Password"/>
                     {/* <p class="animation a5"><a href="#">Forgot Password</a></p> */}
-                    <button type="submit" class="animation a6">LOGIN</button>
+                    {/* <button type="submit" class="animation a6">LOGIN</button> */}
+                    <div class="bbuttons"><button type="submit" class="btn-hover color-11 animation a6">Sign Up</button></div>
                     </div>
                 </div>
                 <div class="right-signup"></div>
@@ -37,6 +39,7 @@ function SignUp(props){
             </div>
             <button type="submit" className="btn btn-primary">Submit</button> */}
         </form>
+        </section>
     )
 }
 

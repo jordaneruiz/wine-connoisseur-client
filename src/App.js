@@ -44,21 +44,21 @@ class App extends Component {
   //add a new bottle for sell
   addBottle = (e) => {
     e.preventDefault()
-    const {name, year, price, description, country, region, grappeVariety, color, picture,} = e.target
-    // console.log(image.files)
+    const {name, year, price, description, country, region, grappeVariety, color, image,} = e.target
+    console.log(image.files)
     // //this is an array so you have to do it like this: 
 
-    // let imageFile = image.files[0];
+    let imageFile = image.files[0];
 
     // //create a form data first (its a class in JS to create a form and create a post request)
-    // let uploadForm = new FormData()
-    // uploadForm.append('imageUrl', imageFile)
+    let uploadForm = new FormData() //its a class in JS to create a form instead of post request
+    uploadForm.append('imageUrl', imageFile)//we have to send that
 
     // //now we create the axios post request
-    // axios.post(`${API_URL}/upload`, uploadForm)
-    // .then((response) => {
-    //   //so first we uploaded with axios.post request
-    //   console.log(response.data)
+    axios.post(`http://localhost:3040/api/upload`, uploadForm)
+    .then((response) => {
+      //so first we uploaded with axios.post request
+      console.log(response.data)
       //whatever image we get here, we have to create here: 
       let newBottle = {
         name: name.value,
@@ -69,9 +69,9 @@ class App extends Component {
         region: region.value,
         grappeVariety: grappeVariety.value,
         color: color.value,
-        picture: picture.value,
+        image: response.data.image
       }
-  
+
       axios.post(`http://localhost:3040/api/add-bottle`, newBottle)
       .then((response) =>{
           this.setState({
@@ -80,6 +80,7 @@ class App extends Component {
             this.props.history.push('/')
           })      
       })  
+    })
   }
 
 
@@ -93,7 +94,7 @@ class App extends Component {
         region: bottle.region,
         grappeVariety: bottle.grappeVariety,
         color: bottle.color,
-        picture: bottle.picture,
+        image: bottle.image,
     })
     .then((resp) => {
       console.log("resp edit is: ", resp)
@@ -226,15 +227,15 @@ handleUnMount = () => {
         }}/>
 
         <Route path="/bottle/:bottleId/edit" render={(rprops) => {
-          return <EditBottle onEdit={this.editBottle} {...rprops}/>
+          return <EditBottle loggedInUser={loggedInUser} onEdit={this.editBottle} {...rprops}/>
         }}/>
 
-        <Route path="/bottle/:bottleId/edit" render={(rprops) => {
-          return <EditBottle {...rprops}/>
-        }}/>
+        {/* <Route path="/bottle/:bottleId/edit" render={(rprops) => {
+          return <EditBottle loggedInUser={loggedInUser} {...rprops}/>
+        }}/> */}
 
         <Route path="/profile" render={(rprops) => {
-          return <Profile {...rprops}/>
+          return <Profile loggedInUser={loggedInUser} {...rprops}/>
         }}/>
 
         <Route pass="/add-bottle" render={(rprops) => {
