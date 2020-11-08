@@ -15,26 +15,24 @@ export default function WineBottles(props) {
         <Carousel.Item>
           <img className="d-block w-100" src="WINE3.png" alt="First slide" />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="WINE1.png" alt="Third slide" />
 
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="WINE2.png" alt="Third slide" />
 
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -42,9 +40,10 @@ export default function WineBottles(props) {
       <Jumbotron>
       <h1>Wine Connoisseur</h1>
             <p>Exceptionnal Vintage Wine waiting to find a new owner.</p>
-        <p>
-          <Link variant="primary" to={"/add-bottle"}>Sell a bottle</Link>
-        </p>
+            
+        <div><button type="submit" class="btn-hover color-11 animation a6"><Link to={"/add-bottle"} style={{color: "white"}}>Sell a bottle</Link></button></div>
+        <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+
       </Jumbotron>
 
       <div className="box">

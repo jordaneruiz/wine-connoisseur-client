@@ -24,27 +24,58 @@ class App extends Component {
 
   state = {
     wines: [], 
+    filteredWine: [],
     loggedInUser: null, 
     errorMessage: null, 
   }
 
 
+
   componentDidMount() {
+    //check if the user is loogenin or not 
+    // if (!this.state.loggedInUser) {
+    //   axios.get(`http://localhost:3040/api/user`/*, {withCredentials: true}*/)
+    //     .then((response) => {
+    //       console.log(response.data)
+    //     })
+
+    // }
+
+ 
   axios.get("http://localhost:3040/api/bottles")
+  
   .then((response) => {
     // response.data
     this.setState({
-      wines: response.data
+      wines: response.data, 
+      filteredWine: response.data,
     })
   })
 }
- 
+
+
+
+
+  //search for a specific bottle
+  searchBottle = (event) => {
+    console.log(event.target.value)
+    let searchText = event.target.value
+
+    const {wines} = this.state
+    let filteredWine = wines.filter((bottle) => {
+      return bottle.name.toLowerCase().includes(searchText.toLowerCase())
+    })
+
+    this.setState({
+      filteredWine: filteredWine
+    })
+}
 
 
   //add a new bottle for sell
   addBottle = (e) => {
     e.preventDefault()
-    const {name, year, price, userSeller, description, country, region, grappeVariety, color, image,} = e.target
+    const {name, year, price, description, country, region, grappeVariety, color, image,} = e.target
     // const {loggedInUser} = this.state
       console.log(image.files)
     // //this is an array so you have to do it like this: 
@@ -128,6 +159,9 @@ class App extends Component {
     password: password.value
     }/*, {withCredentials: true}*/)  //when the request is being made, its creatin a cookie and saving it// soeverytime the loggendin user comes back, the browser knows he is connected
     .then((response) => {
+      console.log("response is :", response)
+      console.log("response.data is: ", response.data)
+
       this.setState({
         loggedInUser: response.data
       }, () => {
@@ -148,7 +182,7 @@ handleSignIn = (e) => {
   //sendthe input as a second parameter
   email: email.value, 
   password: password.value
-  })  
+  }/*, {withCredentials: true}*/)  
   .then((response) => {
     //console.log(response)
     this.setState({
@@ -189,7 +223,8 @@ deleteBottle = (bottleId) => {
         return wine._id !== bottleId
       })
         this.setState({
-          wines: bottleFilter
+          wines: bottleFilter,
+          filteredWine: bottleFilter,
         }, () => {
           this.props.history.push('/')
         })
@@ -205,7 +240,7 @@ handleUnMount = () => {
 
   render() {
 
-    const {loggedInUser, errorMessage, wines} = this.state
+    const {loggedInUser, errorMessage, wines, filteredWine} = this.state
 
     return (
       <div>
@@ -215,7 +250,7 @@ handleUnMount = () => {
 
         <Switch>
         <Route exact path="/" render={() => {
-              return <WineBottles loggedInUser={loggedInUser} wines={wines} /> 
+              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onChange={this.searchBottle}/> 
         }} />
         <Route path="/sign-in" render={(rProps) => {
           return <SignIn onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignIn={this.handleSignIn} {...rProps} />

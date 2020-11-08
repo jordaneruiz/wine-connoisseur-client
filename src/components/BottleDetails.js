@@ -39,9 +39,66 @@ export default class BottleDetails extends Component {
 
         return (
             <body className="body">
+                <div className="box">
+                    <div className="middlebox">
 
+                    <div>
+                <div className="subbox">
+                  <div className="cardo wine-card" style={{ width: "58em"}}>
+                    <div className="card-image">
+                      <figure className="image is-4by3">
+                        <img src={image} alt="Placeholder image"/>
+                      </figure>
+                    </div>
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <p className="title is-4" style={{ height: "2em"}}>
+                            <Link to={`/bottle/${_id}`}>
+                              <p key={_id}>{name}</p>
+                            </Link>
+                          </p>
+                          <p className="subtitle is-6">{userSeller}</p>
+                        </div>
+                      </div>
+
+                      <div className="content">
+                        {/* {bottle.description} */}
+                        <br />
+                        <p>
+                          <b>Vintage: </b> {year}
+                        </p>
+                        <p>
+                          <b>Price: </b>
+                          <span>$</span>
+                          {price}
+                        </p>
+                        <p>
+                          <b>Origin: </b>
+                          {country}
+                          {userSeller}
+                        </p>
+                        <time datetime="2016-1-1">1 Jan 2016</time>
+                      </div>
+                    </div>
+                    <footer className="card-footer">
+                      <a href="#" className="card-footer-item">
+                        Save
+                      </a>
+                      <a href="#" className="card-footer-item">
+                        Seller
+                    </a>
+                      <a href="#" className="card-footer-item">
+                        Buy
+                      </a>
+                      <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
+
+                    </footer>
+                  </div>
+                </div>
+              </div>
             
-            <div>
+            {/* <div>
                 <p>Name: {name}</p>
                 <p>Year: {year}</p>
                 <p>Price: {price}</p>
@@ -52,7 +109,9 @@ export default class BottleDetails extends Component {
                 <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
                 <button>Buy</button>
                 <button>Message Seller</button>
-            </div>
+            </div> */}
+                </div>
+           </div> 
         </body>
         )
     }
