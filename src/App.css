@@ -378,12 +378,25 @@ p {
 
 
 .btn-hover.color-11 {
-     background-image: linear-gradient(to right, #f5ce62, #e43603, #fa7199, #e85a19);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+     background-image: linear-gradient(to right, #6b051f, #fcb292, #e43603, #8a3055);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}
+
+
+.logbtn1 {
+  margin-right: 15px;
+}
+
+.searchBar {
+  border-radius: 5px;
+  width: 50%;
+  height: 45px;
+  border-color: white;
+  padding-left: 20px;
 }
 
 
 /* bottle details */
-* {
+/* * {
   box-sizing: border-box;
 }
 
@@ -584,4 +597,4 @@ body {
       }
     }
   }
-}
+} */

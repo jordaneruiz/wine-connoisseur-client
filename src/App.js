@@ -32,14 +32,15 @@ class App extends Component {
 
 
   componentDidMount() {
-    //check if the user is loogenin or not 
-    // if (!this.state.loggedInUser) {
-    //   axios.get(`http://localhost:3040/api/user`/*, {withCredentials: true}*/)
-    //     .then((response) => {
-    //       console.log(response.data)
-    //     })
-
-    // }
+    //check if the user is loggedin or not 
+    if (!this.state.loggedInUser) {
+      axios.get(`http://localhost:3040/api/user`, {withCredentials: true})
+        .then((response) => {
+          this.setState({
+            loggedInUser: response.data
+          })
+        })
+    }
 
  
   axios.get("http://localhost:3040/api/bottles")
@@ -108,7 +109,8 @@ class App extends Component {
       axios.post(`http://localhost:3040/api/add-bottle`, newBottle)
       .then((response) =>{
           this.setState({
-            wines: [ response.data , ...this.state.wines]
+            wines: [ response.data, ...this.state.wines],
+            filteredWine: [response.data, ...this.state.filteredWine],
           }, () => {
             this.props.history.push('/')
           })      
@@ -157,7 +159,7 @@ class App extends Component {
     username: username.value, 
     email: email.value, 
     password: password.value
-    }/*, {withCredentials: true}*/)  //when the request is being made, its creatin a cookie and saving it// soeverytime the loggendin user comes back, the browser knows he is connected
+    }, {withCredentials: true})  //when the request is being made, its creatin a cookie and saving it// soeverytime the loggendin user comes back, the browser knows he is connected
     .then((response) => {
       console.log("response is :", response)
       console.log("response.data is: ", response.data)
@@ -182,9 +184,11 @@ handleSignIn = (e) => {
   //sendthe input as a second parameter
   email: email.value, 
   password: password.value
-  }/*, {withCredentials: true}*/)  
+  }, {withCredentials: true})  
   .then((response) => {
-    //console.log(response)
+    console.log("response is:", response)
+    console.log("response.data is:", response.data)
+
     this.setState({
       loggedInUser: response.data
     
@@ -246,7 +250,7 @@ handleUnMount = () => {
       <div>
         <NaviBar loggedInUser={loggedInUser} onLogout={this.handleLogOut}/>
         <p></p>
-        {loggedInUser ? <p>User is: {loggedInUser.username} </p>: <p>null</p>}
+        {/* {loggedInUser ? <p>User is: {loggedInUser.username} </p>: <p>null</p>} */}
 
         <Switch>
         <Route exact path="/" render={() => {
@@ -279,6 +283,10 @@ handleUnMount = () => {
         <Route pass="/add-bottle" render={(rprops) => {
           return <AddBottle loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}/>
         }}/>
+
+        {/* <Route exact path="/profile/:userId" render={(rprops) => {
+            return <UserDetails loggedInUser={loggedInUser} {...rprops}/>
+          }} /> */}
 
         {/* <Route path="/bottle/:bottleid/buy" render={(rprops) => {
           return <BuyBottleForm {...rprops}/>

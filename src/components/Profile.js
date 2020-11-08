@@ -4,14 +4,17 @@ import { Link, Redirect } from "react-router-dom";
 
 export default class Profile extends Component {
     state = {
-        profile: null
+        profile: null,
+        // wines: [],
      }
+
+
      componentDidMount(){
         //somecode
         const {loggedInUser} = this.props
 
         if(!this.state.profile) {
-            axios.get(`http://localhost:3040/api/profile`)
+            axios.get(`http://localhost:3040/api/profile`/*, {withCredentials: true}*/)
             .then((resp) => {
                 console.log("resp is : ", resp)
                 console.log("loggedInUser is: ", loggedInUser)
@@ -21,6 +24,16 @@ export default class Profile extends Component {
             })
         }
      }
+
+    // componentDidMount() {
+    //     let id = this.props.match.params.id
+    //       axios.get(`http://localhost:3040/api/profile/:userId`, {withCredentials: true})
+    //       .then((wines) => {
+    //         this.setState({
+    //         wines: wines.data,
+    //         })
+    //       })
+    //     }
 
 
 

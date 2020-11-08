@@ -19,7 +19,7 @@ function AddBottle(props) {
             <div className="left">
                 <div className="header">
                 <h2 className="animation a1">Great Vintage only deserve the best</h2>
-                <h4 className="animation a2">It's time to find a owner to take care of this bottle!</h4>
+                <h4 className="animation a2">It's time to find a new owner to take care of this bottle!</h4>
                 </div>
                 <div className="form">
 
@@ -35,7 +35,7 @@ function AddBottle(props) {
                         <input className="animation a11" name="image" type="file"></input>
                         {/* <input type="file" classNameName="form-control" name="image" id="image" /> */}
                         <br/>
-                        <button className="form-field animation a12" type="submit">Submit</button>
+                        <div class="bbuttons"><button className="form-field btn-hover color-11 animation a12" style={{color: "white"}} type="submit">Submit</button></div>
                 </div>
             </div>
             {/* <div className="right-add"></div> */}

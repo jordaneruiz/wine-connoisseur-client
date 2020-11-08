@@ -15,7 +15,7 @@ export default function WineBottles(props) {
         <Carousel.Item>
           <img className="d-block w-100" src="WINE3.png" alt="First slide" />
           <Carousel.Caption>
-          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+          <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
 
           </Carousel.Caption>
         </Carousel.Item>
@@ -23,7 +23,7 @@ export default function WineBottles(props) {
           <img className="d-block w-100" src="WINE1.png" alt="Third slide" />
 
           <Carousel.Caption>
-          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+          <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
 
           </Carousel.Caption>
         </Carousel.Item>
@@ -31,7 +31,7 @@ export default function WineBottles(props) {
           <img className="d-block w-100" src="WINE2.png" alt="Third slide" />
 
           <Carousel.Caption>
-          <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+          <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
 
           </Carousel.Caption>
         </Carousel.Item>
@@ -41,8 +41,8 @@ export default function WineBottles(props) {
       <h1>Wine Connoisseur</h1>
             <p>Exceptionnal Vintage Wine waiting to find a new owner.</p>
             
-        <div><button type="submit" class="btn-hover color-11 animation a6"><Link to={"/add-bottle"} style={{color: "white"}}>Sell a bottle</Link></button></div>
-        <input onChange={props.onChange} type="text" placeholder="Search"></input> 
+        <div><button type="submit" class="btn-hover color-11"><Link to={"/add-bottle"} style={{color: "white"}}>Sell a bottle</Link></button></div>
+        {/* <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input>  */}
 
       </Jumbotron>
 
