@@ -10,7 +10,7 @@ export default class EditBottle extends Component {
     componentDidMount() {
         //we want to retrieve the date of the bottle the user wants to update
         let bottleId = this.props.match.params.bottleId
-        axios.get(`http://localhost:3040/api/bottle/${bottleId}`)
+        axios.get(`http://localhost:3040/api/bottle/${bottleId}`, {withCredentials: true})
             .then((response) => {
                 this.setState({
                     wine: response.data
@@ -71,10 +71,11 @@ export default class EditBottle extends Component {
                         <input className="form-field animation a9" value={grappeVariety} name="grappeVariety" type="text" placeholder="Enter grappeVariety"></input>
                         <input className="form-field animation a10" value={color} name="color" type="text" placeholder="Enter color"></input>
                         <br/>
-                        <input onChange={this.imageChange} className="animation a11" value={image} name="image" type="file"></input>
+                        <input onChange={this.imageChange} className="animation a11" name="image" type="file"></input>
                         {/* <input type="file" classNameName="form-control" name="image" id="image" /> */}
                         <br/>
-                        <button className="form-field animation a12" type="submit">Submit</button>
+                        <div><button onClick={() => { this.props.onEdit(this.state.wine) }} className="form-field btn-hover color-11 animation a12" type="submit">Save</button></div>
+
                 </div>
             </div>
             {/* <div className="right-add"></div> */}

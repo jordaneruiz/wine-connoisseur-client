@@ -11,6 +11,12 @@ import BottleDetails from './components/BottleDetails'
 import EditBottle from './components/EditBottle';
 import Profile from './components/Profile';
 import AddBottle from './components/AddBottle';
+import UserProfile from './components/UserProfile';
+import EditProfile from './components/EditProfile';
+
+
+import { Spinner } from "react-bootstrap"; //this is a name export not a default export so you have to use the curly braces
+
 
 // import BuyBottleForm from "./components/BuyBottleForm";
 
@@ -27,6 +33,7 @@ class App extends Component {
     filteredWine: [],
     loggedInUser: null, 
     errorMessage: null, 
+    showPage: false,
   }
 
 
@@ -50,6 +57,7 @@ class App extends Component {
     this.setState({
       wines: response.data, 
       filteredWine: response.data,
+      showPage: true,
     })
   })
 }
@@ -106,7 +114,7 @@ class App extends Component {
         // userSeller: userSeller.loggedInUser.username,
       }
 
-      axios.post(`http://localhost:3040/api/add-bottle`, newBottle)
+      axios.post(`http://localhost:3040/api/add-bottle`, newBottle, {withCredentials: true})
       .then((response) =>{
           this.setState({
             wines: [ response.data, ...this.state.wines],
@@ -130,9 +138,9 @@ class App extends Component {
         grappeVariety: bottle.grappeVariety,
         color: bottle.color,
         image: bottle.image,
-    })
-    .then((resp) => {
-      console.log("resp edit is: ", resp)
+    }, {withCredentials: true})
+    .then(() => {
+      //console.log("resp edit is: ", resp)
         let updatedWines = this.state.wines.map((myWine) => {
           if (myWine._id == bottle._id) {
             myWine = bottle
@@ -147,6 +155,11 @@ class App extends Component {
         })
     })
   }
+
+
+
+  
+
 
   handleSignUp = (e) => {
     e.preventDefault()
@@ -218,7 +231,7 @@ handleLogOut = (e) => {
 
 
 deleteBottle = (bottleId) => {
-  axios.delete(`http://localhost:3040/api/bottle/${bottleId}`)
+  axios.delete(`http://localhost:3040/api/bottle/${bottleId}`, {withCredentials: true})
     .then((resp) => {
       console.log("resp is: ", resp)
       //here, we will filter and keep the bottles that does not match the bottleId. So the bottle that matches the bottleId will be deleted
@@ -244,7 +257,11 @@ handleUnMount = () => {
 
   render() {
 
-    const {loggedInUser, errorMessage, wines, filteredWine} = this.state
+    const {loggedInUser, errorMessage, wines, filteredWine, showPage} = this.state
+
+    if (!showPage) {
+      return <Spinner animation="grow" />
+    }
 
     return (
       <div>
@@ -264,6 +281,10 @@ handleUnMount = () => {
           return <SignUp onSignUp={this.handleSignUp} {...rProps} />
         }}/>
 
+        <Route path="/add-bottle" render={(rprops) => {
+          return <AddBottle loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}/>
+        }}/>
+
         <Route exact path="/bottle/:bottleId" render={(rProps) => {
           return <BottleDetails onDelete={this.deleteBottle} loggedInUser={loggedInUser} {...rProps}/>
         }}/>
@@ -280,13 +301,15 @@ handleUnMount = () => {
           return <Profile loggedInUser={loggedInUser} {...rprops}/>
         }}/>
 
-        <Route pass="/add-bottle" render={(rprops) => {
-          return <AddBottle loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}/>
+        <Route path="/profile/edit" render={(rprops) => {
+          return <EditProfile loggedInUser={loggedInUser} {...rprops}/>
         }}/>
 
-        {/* <Route exact path="/profile/:userId" render={(rprops) => {
-            return <UserDetails loggedInUser={loggedInUser} {...rprops}/>
-          }} /> */}
+        
+
+        <Route exact path="/profile/:userId" render={(rprops) => {
+            return <UserProfile loggedInUser={loggedInUser} {...rprops}/>
+          }} />
 
         {/* <Route path="/bottle/:bottleid/buy" render={(rprops) => {
           return <BuyBottleForm {...rprops}/>

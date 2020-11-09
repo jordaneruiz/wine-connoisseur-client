@@ -69,7 +69,7 @@ export default function WineBottles(props) {
                               <p key={bottle._id}>{bottle.name}</p>
                             </Link>
                           </p>
-                          <p className="subtitle is-6">{bottle.userSeller}</p>
+                          <p className="subtitle is-6"></p>
                         </div>
                       </div>
 
@@ -87,9 +87,8 @@ export default function WineBottles(props) {
                         <p>
                           <b>Origin: </b>
                           {bottle.country}
-                          {bottle.userSeller}
                         </p>
-                        <time datetime="2016-1-1">1 Jan 2016</time>
+                        {/* <time datetime="2016-1-1">1 Jan 2016</time> */}
                       </div>
                     </div>
                     <footer className="card-footer">

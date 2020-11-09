@@ -14,10 +14,14 @@ export default class BottleDetails extends Component {
         console.log(this.props)//will list history, location and match 
         console.log(this.props.match)
         console.log(this.props.match.params.bottleId)
+        console.log(this.state.wine)
+        console.log(this.props.loggedInUser)
+
+
         
         let id = this.props.match.params.bottleId
 
-        Axios.get(`http://localhost:3040/api/bottle/${id}`)
+        Axios.get(`http://localhost:3040/api/bottle/${id}`, {withCredentials: true})
             .then((resp) => {
                 console.log("resp is : ", resp)
                 this.setState({
@@ -44,7 +48,7 @@ export default class BottleDetails extends Component {
 
                     <div>
                 <div className="subbox">
-                  <div className="cardo wine-card" style={{ width: "58em"}}>
+                  <div className="cardo wine-card" style={{ width: "38em"}}>
                     <div className="card-image">
                       <figure className="image is-4by3">
                         <img src={image} alt="Placeholder image"/>
@@ -58,7 +62,7 @@ export default class BottleDetails extends Component {
                               <p key={_id}>{name}</p>
                             </Link>
                           </p>
-                          <p className="subtitle is-6">{userSeller}</p>
+                          <p className="subtitle is-6">{year}</p>
                         </div>
                       </div>
 
@@ -76,13 +80,13 @@ export default class BottleDetails extends Component {
                         <p>
                           <b>Origin: </b>
                           {country}
-                          {userSeller}
                         </p>
+                        
                         <time datetime="2016-1-1">1 Jan 2016</time>
                       </div>
                     </div>
                     <footer className="card-footer">
-                      <a href="#" className="card-footer-item">
+                    {/* <a href="#" className="card-footer-item">
                         Save
                       </a>
                       <a href="#" className="card-footer-item">
@@ -90,9 +94,30 @@ export default class BottleDetails extends Component {
                     </a>
                       <a href="#" className="card-footer-item">
                         Buy
-                      </a>
-                      <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
+                      </a>    */}
 
+                     
+                      {
+                        loggedInUser._id !== userSeller ? 
+                        <>
+                        <a href="#" className="card-footer-item">
+                          Save
+                        </a>
+                        <a href="#" className="card-footer-item">
+                          Seller
+                      </a>
+                        <a href="#" className="card-footer-item">
+                          Buy
+                        </a>   
+                        </>                   
+                        : 
+
+                        <>
+                        <Link className="card-footer-item" onClick={() => { this.props.onDelete(_id) }}>Delete</Link>
+                        <Link className="card-footer-item" to={`/bottle/${_id}/edit`}>Edit</Link>
+                        </>
+                      }
+                
                     </footer>
                   </div>
                 </div>
@@ -116,3 +141,30 @@ export default class BottleDetails extends Component {
         )
     }
 }
+
+
+
+
+
+
+
+// {
+//   this.props.loggedInUser._id !== userSeller ? 
+//   <>
+//   <a href="#" className="card-footer-item">
+//     Save
+//   </a>
+//   <a href="#" className="card-footer-item">
+//     Seller
+// </a>
+//   <a href="#" className="card-footer-item">
+//     Buy
+//   </a>   
+//   </>                   
+//   : 
+
+//   <>
+//   <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
+//   <Link to={`/bottle/${_id}/edit`}><button>Edit</button></Link>
+//   </>
+// }
