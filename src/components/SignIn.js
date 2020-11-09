@@ -11,21 +11,21 @@ export default function SignIn(props) {
   return (
     <section className="margin-form">
     <form onSubmit={props.onSignIn}>
-        <div class="container">
-        <div class="left">
-            <div class="header">
-            <h2 class="animation a1">Welcome Back</h2>
-            <h4 class="animation a2">Log in to your account using email and password</h4>
+        <div className="container">
+        <div className="left">
+            <div className="header">
+            <h2 className="animation a1">Welcome Back</h2>
+            <h4 className="animation a2">Log in to your account using email and password</h4>
             </div>
-            <div class="form">
-            <input name="email" onChange={props.onUnmount} type="text" class="form-field animation a3" placeholder="Email Address"/>
-            <input name="password" type="password" class="form-field animation a4" placeholder="Password"/>
-            <p class="animation a5"><a href="#">Forgot Password</a></p>
-            {/* <button type="submit" class="animation a6">LOGIN</button> */}
-            <div class="bbuttons"><button type="submit" class="btn-hover color-11 animation a6">LOGIN</button></div>
+            <div className="form">
+            <input name="email" onChange={props.onUnmount} type="text" className="form-field animation a3" placeholder="Email Address"/>
+            <input name="password" type="password" className="form-field animation a4" placeholder="Password"/>
+            <p className="animation a5"><a href="#">Forgot Password</a></p>
+            {/* <button type="submit" className="animation a6">LOGIN</button> */}
+            <div className="bbuttons"><button type="submit" className="btn-hover color-11 animation a6">LOGIN</button></div>
             </div>
         </div>
-        <div class="right-signin"></div>
+        <div className="right-signin"></div>
         </div>
 
       {/* <div>
@@ -33,7 +33,7 @@ export default function SignIn(props) {
         <input
           onChange={props.onUnmount}
           type="text"
-          classNameNameName="new-classNameName"
+          classNameNameNameName="new-classNameNameName"
           id="exampleInputEmail1"
           name="email"
           aria-describedby="emailHelp"
@@ -44,11 +44,11 @@ export default function SignIn(props) {
         <input
           name="password"
           type="password"
-          classNameNameName="new-classNameName"
+          classNameNameNameName="new-classNameNameName"
           id="exampleInputPassword1"
         />
       </div>
-      <button type="submit" classNameNameName="newclassNameName">
+      <button type="submit" classNameNameNameName="newclassNameNameName">
         Submit
       </button> */}
 

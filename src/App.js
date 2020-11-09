@@ -47,9 +47,13 @@ class App extends Component {
             loggedInUser: response.data
           })
         })
+        this.getBottles()
+    } else {
+      this.getBottles()
     }
+}
 
- 
+getBottles = () => {
   axios.get("http://localhost:3040/api/bottles")
   
   .then((response) => {
@@ -61,8 +65,6 @@ class App extends Component {
     })
   })
 }
-
-
 
 
   //search for a specific bottle
@@ -127,8 +129,10 @@ class App extends Component {
   }
 
 
-  editBottle = (bottle) => {
-    axios.patch(`http://localhost:3040/api/bottle/${bottle._id}`, {
+  editBottle = (e, bottle) => {
+    e.preventDefault()
+
+    axios.patch(`http://localhost:3040/api/bottle/edit/${bottle._id}`, {
       name: bottle.name,
         year: bottle.year,
         price: bottle.price,
@@ -141,18 +145,19 @@ class App extends Component {
     }, {withCredentials: true})
     .then(() => {
       //console.log("resp edit is: ", resp)
-        let updatedWines = this.state.wines.map((myWine) => {
-          if (myWine._id == bottle._id) {
-            myWine = bottle
-          }
-          return myWine
-        })
+        // let updatedWines = this.state.wines.map((myWine) => {
+        //   if (myWine._id == bottle._id) {
+        //     myWine = bottle
+        //   }
+        //   return myWine
+        // })
 
-        this.setState({
-          wines: updatedWines
-        }, () => {
-          this.props.history.push('/')
-        })
+        // this.setState({
+        //   wines: updatedWines
+        // }, () => {
+        //   this.props.history.push('/')
+        // })
+        this.props.history.push("/")
     })
   }
 
@@ -248,6 +253,9 @@ deleteBottle = (bottleId) => {
     })
 }
 
+
+
+
 handleUnMount = () => {
   console.log("handleUnMount called")
   this.setState({
@@ -260,7 +268,7 @@ handleUnMount = () => {
     const {loggedInUser, errorMessage, wines, filteredWine, showPage} = this.state
 
     if (!showPage) {
-      return <Spinner animation="grow" />
+      return <Spinner animation="grow" variant="danger" style= {{marginLeft: "50px"}}/>
     }
 
     return (
@@ -293,16 +301,12 @@ handleUnMount = () => {
           return <EditBottle loggedInUser={loggedInUser} onEdit={this.editBottle} {...rprops}/>
         }}/>
 
-        {/* <Route path="/bottle/:bottleId/edit" render={(rprops) => {
-          return <EditBottle loggedInUser={loggedInUser} {...rprops}/>
-        }}/> */}
-
-        <Route path="/profile" render={(rprops) => {
-          return <Profile loggedInUser={loggedInUser} {...rprops}/>
+        <Route exact path="/profile" render={(rprops) => {
+          return <Profile onDelete={this.deleteBottle} loggedInUser={loggedInUser} wines={filteredWine} {...rprops}/>
         }}/>
 
         <Route path="/profile/edit" render={(rprops) => {
-          return <EditProfile loggedInUser={loggedInUser} {...rprops}/>
+          return <EditProfile loggedInUser={loggedInUser} onEdit={this.editProfile} {...rprops}/>
         }}/>
 
         

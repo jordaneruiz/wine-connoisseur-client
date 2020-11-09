@@ -62,7 +62,7 @@ export default class BottleDetails extends Component {
                               <p key={_id}>{name}</p>
                             </Link>
                           </p>
-                          <p className="subtitle is-6">{year}</p>
+                          <p className="subtitle is-6"></p>
                         </div>
                       </div>
 
@@ -78,15 +78,20 @@ export default class BottleDetails extends Component {
                           {price}
                         </p>
                         <p>
-                          <b>Origin: </b>
-                          {country}
+                          <b>Origin: </b> {country}, {region}
                         </p>
-                        
-                        <time datetime="2016-1-1">1 Jan 2016</time>
-                      </div>
+                        <p>
+                          <b>Grappe Variety: </b> {grappeVariety}
+                        </p>
+                        <p>
+                          <b>Description: </b>
+                          {description}
+                        </p>
+                                            
+                        </div>
                     </div>
                     <footer className="card-footer">
-                    {/* <a href="#" className="card-footer-item">
+                    {/* <a href="#" Name="card-footer-item">
                         Save
                       </a>
                       <a href="#" className="card-footer-item">
@@ -103,9 +108,9 @@ export default class BottleDetails extends Component {
                         <a href="#" className="card-footer-item">
                           Save
                         </a>
-                        <a href="#" className="card-footer-item">
+                        <Link to={`/profile/${userSeller}`} className="card-footer-item">
                           Seller
-                      </a>
+                      </Link>
                         <a href="#" className="card-footer-item">
                           Buy
                         </a>   

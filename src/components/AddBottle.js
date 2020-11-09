@@ -35,7 +35,7 @@ function AddBottle(props) {
                         <input className="animation a11" name="image" type="file"></input>
                         {/* <input type="file" classNameName="form-control" name="image" id="image" /> */}
                         <br/>
-                        <div class="bbuttons"><button className="form-field btn-hover color-11 animation a12" style={{color: "white"}} type="submit">Submit</button></div>
+                        <div className="bbuttons"><button className="form-field btn-hover color-11 animation a12" style={{color: "white"}} type="submit">Submit</button></div>
                 </div>
             </div>
             {/* <div className="right-add"></div> */}
