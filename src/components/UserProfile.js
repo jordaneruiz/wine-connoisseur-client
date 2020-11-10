@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+import {API_URL} from '../config'
 
 export default class Profile extends Component {
     
@@ -13,7 +14,7 @@ export default class Profile extends Component {
         let id = this.props.match.params.userId
 
           //fetch seller user information 
-          axios.get(`http://localhost:3040/api/profile/${id}`, {withCredentials: true})
+          axios.get(`${API_URL}/profile/${id}`, {withCredentials: true})
           .then((resp) => {
             // console.log("this.props.match.params is ", this.props.match.params)
             // console.log("resp is ", resp)
@@ -28,7 +29,7 @@ export default class Profile extends Component {
           
           let userId = this.props.match.params.userId
           console.log("userId is ", userId)
-          axios.get(`http://localhost:3040/api/userBottles/${userId}`, {withCredentials: true})
+          axios.get(`${API_URL}/userBottles/${userId}`, {withCredentials: true})
           .then((wines) => {
             console.log("bottles are: ", wines.data)
             

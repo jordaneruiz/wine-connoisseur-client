@@ -4,6 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./checkoutForm";
 import "../App.css";
 import Axios from 'axios'
+import {API_URL} from '../config'
 
 
 export default class BuyBottle extends Component {
@@ -23,7 +24,7 @@ componentDidMount() {
     
     let id = this.props.match.params.bottleId
 
-    Axios.get(`http://localhost:3040/api/bottle/${id}`, {withCredentials: true})
+    Axios.get(`${API_URL}/bottle/${id}`, {withCredentials: true})
         .then((resp) => {
             console.log("resp is : ", resp)
             this.setState({

@@ -14,7 +14,7 @@ import AddBottle from './components/AddBottle';
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
 import BuyBottle from './components/BuyBottle';
-
+import {API_URL} from './config'
 
 import { Spinner } from "react-bootstrap"; //this is a name export not a default export so you have to use the curly braces
 
@@ -42,7 +42,7 @@ class App extends Component {
   componentDidMount() {
     //check if the user is loggedin or not 
     if (!this.state.loggedInUser) {
-      axios.get(`http://localhost:3040/api/user`, {withCredentials: true})
+      axios.get(`${API_URL}/user`, {withCredentials: true})
         .then((response) => {
           this.setState({
             loggedInUser: response.data
@@ -55,7 +55,7 @@ class App extends Component {
 }
 
 getBottles = () => {
-  axios.get("http://localhost:3040/api/bottles")
+  axios.get(`${API_URL}/bottles`)
   
   .then((response) => {
     // response.data
@@ -99,7 +99,7 @@ getBottles = () => {
     uploadForm.append('imageUrl', imageFile)//we have to send that
 
     // //now we create the axios post request
-    axios.post(`http://localhost:3040/api/upload`, uploadForm)
+    axios.post(`${API_URL}/upload`, uploadForm)
     .then((response) => {
       //so first we uploaded with axios.post request
       console.log(response.data)
@@ -117,7 +117,7 @@ getBottles = () => {
         // userSeller: userSeller.loggedInUser.username,
       }
 
-      axios.post(`http://localhost:3040/api/add-bottle`, newBottle, {withCredentials: true})
+      axios.post(`${API_URL}/add-bottle`, newBottle, {withCredentials: true})
       .then((response) =>{
           this.setState({
             wines: [ response.data, ...this.state.wines],
@@ -133,7 +133,7 @@ getBottles = () => {
   editBottle = (e, bottle) => {
     e.preventDefault()
 
-    axios.patch(`http://localhost:3040/api/bottle/edit/${bottle._id}`, {
+    axios.patch(`${API_URL}/bottle/edit/${bottle._id}`, {
       name: bottle.name,
         year: bottle.year,
         price: bottle.price,
@@ -172,7 +172,7 @@ getBottles = () => {
 
     const {username, email, password} = e.target
 
-    axios.post(`http://localhost:3040/api/signup`, {
+    axios.post(`${API_URL}/signup`, {
     //send the data of the form 
     //sendthe input as a second parameter
     username: username.value, 
@@ -198,7 +198,7 @@ handleSignIn = (e) => {
 
   const {email, password} = e.target
 
-  axios.post(`http://localhost:3040/api/signin`, {
+  axios.post(`${API_URL}/signin`, {
   //send the data of the form 
   //sendthe input as a second parameter
   email: email.value, 
@@ -226,7 +226,7 @@ handleSignIn = (e) => {
 
 
 handleLogOut = (e) => {
-  axios.post("http://localhost:3040/api/logout", {}, {withCredentials: true})  
+  axios.post(`${API_URL}/logout`, {}, {withCredentials: true})  
     .then(() => {
       this.setState({
         loggedInUser: null
@@ -237,7 +237,7 @@ handleLogOut = (e) => {
 
 
 deleteBottle = (bottleId) => {
-  axios.delete(`http://localhost:3040/api/bottle/${bottleId}`, {withCredentials: true})
+  axios.delete(`${API_URL}/bottle/${bottleId}`, {withCredentials: true})
     .then((resp) => {
       console.log("resp is: ", resp)
       //here, we will filter and keep the bottles that does not match the bottleId. So the bottle that matches the bottleId will be deleted
@@ -280,7 +280,7 @@ handleUnMount = () => {
 
         <Switch>
         <Route exact path="/" render={() => {
-              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onChange={this.searchBottle}/> 
+              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle}/> 
         }} />
         <Route path="/sign-in" render={(rProps) => {
           return <SignIn onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignIn={this.handleSignIn} {...rProps} />

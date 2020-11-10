@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+import {API_URL} from '../config'
 
 export default class Profile extends Component {
   state = {
@@ -15,7 +16,7 @@ export default class Profile extends Component {
     //fetch loggedin user information displayed on profile
     if (!this.state.profile) {
       axios
-        .get(`http://localhost:3040/api/profile`, { withCredentials: true })
+        .get(`${API_URL}/profile`, { withCredentials: true })
         .then((resp) => {
           console.log("resp is : ", resp);
           console.log("loggedInUser is: ", loggedInUser);
@@ -27,7 +28,7 @@ export default class Profile extends Component {
 
     //to get loggedin user's bottles he is selling
     axios
-      .get(`http://localhost:3040/api/userBottles`, { withCredentials: true })
+      .get(`${API_URL}/userBottles`, { withCredentials: true })
       .then((wines) => {
         console.log("bottles are: ", wines.data);
         console.log("loggedInUser._id is", loggedInUser._id);
@@ -41,7 +42,7 @@ export default class Profile extends Component {
   editProfile = (profile) => {
     axios
       .patch(
-        `http://localhost:3040/api/profile/edit`,
+        `${API_URL}/profile/edit`,
         {
           username: profile.username,
           bio: profile.bio,
@@ -50,7 +51,6 @@ export default class Profile extends Component {
         { withCredentials: true }
       )
       .then(() => {
-        //console.log("resp edit is: ", resp)
         let updateProfile = this.state.profile.map((myProfile) => {
           if (myProfile._id == profile._id) {
             myProfile = profile;
@@ -175,9 +175,8 @@ export default class Profile extends Component {
                   {/* </div> */}
                   <footer className="card-footer">
                     <div class="bbuttons">
-                      <Link to={`/profile/edit`}>
+                      <Link to={`/profile/edit`} onEdit={this.editProfile}>
                         <button
-                          onEdit={this.editProfile}
                           class="btn-hover color-11 "
                         >
                           Edit my profile

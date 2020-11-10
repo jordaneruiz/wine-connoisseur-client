@@ -4,6 +4,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
+import {API_URL} from '../config'
 
 
 
@@ -21,7 +22,7 @@ export default function CheckoutForm(props) {
     console.log("in checkout form", props)
     // Create PaymentIntent as soon as the page loads
     window
-      .fetch("http://localhost:3040/api/create-payment-intent", {
+      .fetch(`${API_URL}/create-payment-intent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

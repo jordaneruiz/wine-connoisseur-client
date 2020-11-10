@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import {API_URL} from '../config'
 
 export default class EditProfile extends Component {
   state = {
@@ -10,7 +11,7 @@ export default class EditProfile extends Component {
     //we want to retrieve the data from the user to be able to update it
     // let bottleId = this.props.match.params.bottleId
     axios
-      .get(`http://localhost:3040/api//profile/edit`, { withCredentials: true })
+      .get(`${API_URL}/profile/edit`, { withCredentials: true })
       .then((response) => {
         console.log("response is: ", response);
         this.setState({
@@ -72,9 +73,7 @@ export default class EditProfile extends Component {
         </form>
         <div>
           <button
-            onClick={() => {
-              this.props.onEdit(this.state.profile);
-            }}
+            onClick={() => { this.props.onEdit(this.state.profile) }}
             className="form-field btn-hover color-11 animation a12"
             type="submit"
           >

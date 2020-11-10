@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import {API_URL} from '../config'
 
 export default class BottleDetails extends Component {
 
@@ -21,7 +22,7 @@ export default class BottleDetails extends Component {
         
         let id = this.props.match.params.bottleId
 
-        Axios.get(`http://localhost:3040/api/bottle/${id}`, {withCredentials: true})
+        Axios.get(`${API_URL}/bottle/${id}`, {withCredentials: true})
             .then((resp) => {
                 console.log("resp is : ", resp)
                 this.setState({
