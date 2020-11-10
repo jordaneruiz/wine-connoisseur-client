@@ -7,11 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function WineBottles(props) {
   //console.log(props.wines);
-
+// console.log("props.wines: ", props.wines)
+// console.log("props.loggedInUser", props.loggedInUser)
+// console.log("props.loggedInUser._id", props.loggedInUser._id)
+// console.log("props.wines.userSeller", props.wines.userSeller)
 
   return (
     <body className="body">
-      <Carousel>
+      <Carousel >
         <Carousel.Item>
           <img className="d-block w-100" src="WINE3.png" alt="First slide" />
           <Carousel.Caption>
@@ -49,7 +52,7 @@ export default function WineBottles(props) {
       <div className="box">
         <h1>WINE BOTTLES PAGE</h1>
         
-        <p>{props.loggedInUser ? <p>User is: {props.loggedInUser.username} </p>: <p>null</p>}</p>
+        <p>{props.loggedInUser ? <p>User is: {props.loggedInUser.username} </p>: <p>"You need to sign-in or sign-up to see more details about our wines"</p>}</p>
         <div className="middlebox">
           {props.wines.map((bottle) => {
             return (
@@ -92,7 +95,64 @@ export default function WineBottles(props) {
                       </div>
                     </div>
                     <footer className="card-footer">
-                      <a href="#" className="card-footer-item">
+
+
+                    {/* { props.loggedInUser ? 
+                    
+                    
+                      {props.loggedInUser._id !== bottle.userSeller ?   
+                        <>
+                        <a href="#" className="card-footer-item">
+                        Save
+                        </a>
+                        <Link
+                        to={`/bottle/${bottle._id}`}
+                        className="card-footer-item"
+                        >
+                        Info
+                        </Link>
+                        <a href="#" className="card-footer-item">
+                        Buy
+                        </a>
+                        </>
+                        :
+                        <>
+                        <Link className="card-footer-item" onClick={() => { this.props.onDelete(props.wines._id) }}>Delete</Link>
+                        <Link className="card-footer-item" to={`/bottle/${bottle._id}/edit`}>Edit</Link>
+                        </>
+
+
+                        }
+                    
+                    : 
+                    
+                    
+                    <div>
+                    <a href="#" className="card-footer-item">
+                        Save
+                        </a>
+                        <Link
+                        to={`/bottle/${bottle._id}`}
+                        className="card-footer-item"
+                        >
+                        Info
+                        </Link>
+                        <a href="#" className="card-footer-item">
+                        Buy
+                        </a>   
+                      </div>                 
+                    
+                    } */}
+
+
+
+
+
+                    { 
+
+                        props.loggedInUser._id !== bottle.userSeller ?   
+                        <>
+                        <a href="#" className="card-footer-item">
                         Save
                       </a>
                       <Link
@@ -101,9 +161,22 @@ export default function WineBottles(props) {
                       >
                         Info
                       </Link>
-                      <a href="#" className="card-footer-item">
+                      <Link
+                        to={`/buy/${bottle._id}`}
+                        className="card-footer-item"
+                      >
                         Buy
-                      </a>
+                        </Link>
+                      </>
+                      :
+                      <>
+                        <Link className="card-footer-item" onClick={() => { this.props.onDelete(props.wines._id) }}>Delete</Link>
+                        <Link className="card-footer-item" to={`/bottle/${bottle._id}/edit`}>Edit</Link>
+                      </>
+
+
+                    }
+                      
                     </footer>
                   </div>
                 </div>

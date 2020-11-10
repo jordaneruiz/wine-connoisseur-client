@@ -111,9 +111,12 @@ export default class BottleDetails extends Component {
                         <Link to={`/profile/${userSeller}`} className="card-footer-item">
                           Seller
                       </Link>
-                        <a href="#" className="card-footer-item">
-                          Buy
-                        </a>   
+                      <Link
+                        to={`/buy/${_id}`}
+                        className="card-footer-item"
+                      >
+                        Buy
+                        </Link>
                         </>                   
                         : 
 

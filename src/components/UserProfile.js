@@ -18,7 +18,6 @@ export default class Profile extends Component {
             // console.log("this.props.match.params is ", this.props.match.params)
             // console.log("resp is ", resp)
             // console.log("resp.data is ", resp.data)
-
             this.setState({
             profile: resp.data
             })
@@ -26,9 +25,13 @@ export default class Profile extends Component {
 
 
           //get all the bottles the user is selling
-          axios.get(`http://localhost:3040/api/userBottles`, {withCredentials: true})
+          
+          let userId = this.props.match.params.userId
+          console.log("userId is ", userId)
+          axios.get(`http://localhost:3040/api/userBottles/${userId}`, {withCredentials: true})
           .then((wines) => {
             console.log("bottles are: ", wines.data)
+            
 
             this.setState({
             wines: wines.data,
@@ -95,7 +98,7 @@ export default class Profile extends Component {
                                       {/* {bottle.description} */}
                                       <br />
                                       <p>
-                                        <b>Vintage: {singleBottle.vintage}</b>
+                                        <b>Vintage:</b> {singleBottle.year}
                                       </p>
                                       <p>
                                         <b>Price: </b>
@@ -109,20 +112,18 @@ export default class Profile extends Component {
                                   </div>
                                   <footer className="card-footer">
                                     <>
-                                      <Link
-                                        className="card-footer-item"
-                                        onClick={() => {
-                                          this.props.onDelete(singleBottle._id);
-                                        }}
-                                      >
-                                        Delete
-                                      </Link>
-                                      <Link
-                                        className="card-footer-item"
-                                        to={`/bottle/${singleBottle._id}/edit`}
-                                      >
-                                        Edit
-                                      </Link>
+                                    <a href="#" className="card-footer-item">
+                                      Save
+                                    </a>
+                                    <Link
+                                      to={`/bottle/${singleBottle._id}`}
+                                      className="card-footer-item"
+                                    >
+                                      Info
+                                    </Link>
+                                    <a href="#" className="card-footer-item">
+                                      Buy
+                                    </a>
                                     </>
                                   </footer>
                                 </div>

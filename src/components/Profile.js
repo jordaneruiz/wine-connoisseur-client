@@ -32,7 +32,6 @@ export default class Profile extends Component {
         console.log("bottles are: ", wines.data);
         console.log("loggedInUser._id is", loggedInUser._id);
 
-        // if ( === )
         this.setState({
           wines: wines.data,
         });
@@ -83,22 +82,9 @@ export default class Profile extends Component {
     }
     return (
       <body className="body">
-        <div className="box">
-          <div className="middlebox">
-            <div>
-              <div className="subbox">
-                <div className="cardo wine-card" /*style={{ width: "38em"}}*/>
-                  <div className="card-image"></div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <p className="title is-4" style={{ height: "2em" }}></p>
-                        <p className="subtitle is-6"> </p>
-                      </div>
-                    </div>
+      
 
-                    <div className="content">
-                      {/* {bottle.description} */}
+                    <div /*className="content"*/>
                       <br />
 
                       <p>Name: {this.state.profile.username}</p>
@@ -121,6 +107,7 @@ export default class Profile extends Component {
                                     <figure className="image is-4by3">
                                       <img
                                         src={singleBottle.image}
+                                        style={{ width: "100%"}}
                                         alt="Placeholder image"
                                       />
                                     </figure>
@@ -148,7 +135,7 @@ export default class Profile extends Component {
                                       {/* {bottle.description} */}
                                       <br />
                                       <p>
-                                        <b>Vintage: {singleBottle.vintage}</b>
+                                        <b>Vintage:</b> {singleBottle.year}
                                       </p>
                                       <p>
                                         <b>Price: </b>
@@ -185,7 +172,7 @@ export default class Profile extends Component {
                         })}
                       </div>
                     </div>
-                  </div>
+                  {/* </div> */}
                   <footer className="card-footer">
                     <div class="bbuttons">
                       <Link to={`/profile/edit`}>
@@ -198,11 +185,7 @@ export default class Profile extends Component {
                       </Link>
                     </div>
                   </footer>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </body>
     );
   }

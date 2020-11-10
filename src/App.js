@@ -13,6 +13,7 @@ import Profile from './components/Profile';
 import AddBottle from './components/AddBottle';
 import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
+import BuyBottle from './components/BuyBottle';
 
 
 import { Spinner } from "react-bootstrap"; //this is a name export not a default export so you have to use the curly braces
@@ -306,7 +307,7 @@ handleUnMount = () => {
         }}/>
 
         <Route path="/profile/edit" render={(rprops) => {
-          return <EditProfile loggedInUser={loggedInUser} onEdit={this.editProfile} {...rprops}/>
+          return <EditProfile loggedInUser={loggedInUser} onEdit={this.editProfile} wines={filteredWine} {...rprops}/>
         }}/>
 
         
@@ -314,6 +315,12 @@ handleUnMount = () => {
         <Route exact path="/profile/:userId" render={(rprops) => {
             return <UserProfile loggedInUser={loggedInUser} {...rprops}/>
           }} />
+
+
+        <Route exact path="/buy/:bottleId" render={(rprops) => {
+            return <BuyBottle loggedInUser={loggedInUser} {...rprops}/>
+          }} />
+
 
         {/* <Route path="/bottle/:bottleid/buy" render={(rprops) => {
           return <BuyBottleForm {...rprops}/>
