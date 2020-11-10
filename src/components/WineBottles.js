@@ -97,61 +97,30 @@ export default function WineBottles(props) {
                     <footer className="card-footer">
 
 
-                    {/* { props.loggedInUser ? 
-                    
-                    
-                      {props.loggedInUser._id !== bottle.userSeller ?   
-                        <>
-                        <a href="#" className="card-footer-item">
-                        Save
-                        </a>
-                        <Link
-                        to={`/bottle/${bottle._id}`}
-                        className="card-footer-item"
-                        >
-                        Info
-                        </Link>
-                        <a href="#" className="card-footer-item">
-                        Buy
-                        </a>
-                        </>
-                        :
-                        <>
-                        <Link className="card-footer-item" onClick={() => { this.props.onDelete(props.wines._id) }}>Delete</Link>
-                        <Link className="card-footer-item" to={`/bottle/${bottle._id}/edit`}>Edit</Link>
-                        </>
-
-
-                        }
-                    
-                    : 
-                    
-                    
-                    <div>
-                    <a href="#" className="card-footer-item">
-                        Save
-                        </a>
-                        <Link
-                        to={`/bottle/${bottle._id}`}
-                        className="card-footer-item"
-                        >
-                        Info
-                        </Link>
-                        <a href="#" className="card-footer-item">
-                        Buy
-                        </a>   
-                      </div>                 
-                    
-                    } */}
-
-
-
-
-
                     { 
 
-                        props.loggedInUser._id !== bottle.userSeller ?   
+                      (!props.loggedInUser) ?    
                         <>
+                        <a href="#" className="card-footer-item">
+                        Save
+                      </a>
+                      <Link
+                        to={`/bottle/${bottle._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
+                      <Link
+                        to={`/buy/${bottle._id}`}
+                        className="card-footer-item"
+                      >
+                        Buy
+                        </Link>
+                      </>
+
+                      : props.loggedInUser._id !== bottle.userSeller ?
+                      
+                      <>
                         <a href="#" className="card-footer-item">
                         Save
                       </a>
@@ -194,3 +163,35 @@ export default function WineBottles(props) {
 // <Link to={`/bottle/${bottle._id}`}>
 //                         <p key={bottle._id}>{bottle.name}</p>
 //                         </Link>
+
+
+
+{/* 
+{ 
+
+(!props.loggedInUser) ?    
+  <>
+  <a href="#" className="card-footer-item">
+  Save
+</a>
+<Link
+  to={`/bottle/${bottle._id}`}
+  className="card-footer-item"
+>
+  Info
+</Link>
+<Link
+  to={`/buy/${bottle._id}`}
+  className="card-footer-item"
+>
+  Buy
+  </Link>
+</>
+: props.loggedInUser._id !== bottle.userSeller ?
+<>
+  <Link className="card-footer-item" onClick={() => { this.props.onDelete(props.wines._id) }}>Delete</Link>
+  <Link className="card-footer-item" to={`/bottle/${bottle._id}/edit`}>Edit</Link>
+</>
+
+
+} */}
