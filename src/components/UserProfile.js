@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import {API_URL} from '../config'
+import { Card, Button } from "react-bootstrap";
 
 export default class Profile extends Component {
     
@@ -52,15 +53,18 @@ export default class Profile extends Component {
 
     return (
 
-        <div className="profile">
-                <p>Welcome, this is {username}'s profile</p>
-                <p>{username}'s description {bio}</p>
 
+      <body className="body">
+        <section className="margin-section">
+        <Card>
+          <Card.Header>Welcome, this is {username}'s profile</Card.Header>
+          <Card.Body>
+            <Card.Title>{username}'s Biographie</Card.Title>
+            <Card.Text>{bio}</Card.Text>
+            <Card.Title>{username}'s current sales:</Card.Title>
 
-                <p>{username}'s sellings</p>
-
-                <div className="middlebox">
-                        {this.state.wines.map((singleBottle) => {
+              <div className="middlebox">
+              {this.state.wines.map((singleBottle) => {
                           return (
                             <div>
                               <div className="subbox">
@@ -132,10 +136,102 @@ export default class Profile extends Component {
                             </div>
                           );
                         })}
-                      </div>
+                       </div>
+            </Card.Body>
+          </Card>
+        </section>
+      </body>
 
-        </div>
+        // <div className="profile">
+        //         <p>Welcome, this is {username}'s profile</p>
+        //         <p>{username}'s description {bio}</p>
+
+
+        //         <p>{username}'s sellings</p>
+
+        //         <div className="middlebox">
+        //                 {this.state.wines.map((singleBottle) => {
+        //                   return (
+        //                     <div>
+        //                       <div className="subbox">
+        //                         <div
+        //                           className="cardo wine-card"
+        //                           style={{ width: "18em" }}
+        //                         >
+        //                           <div className="card-image">
+        //                             <figure className="image is-4by3">
+        //                               <img
+        //                                 src={singleBottle.image}
+        //                                 alt="Placeholder image"
+        //                               />
+        //                             </figure>
+        //                           </div>
+        //                           <div className="card-content">
+        //                             <div className="media">
+        //                               <div className="media-content">
+        //                                 <p
+        //                                   className="title is-4"
+        //                                   style={{ height: "1em" }}
+        //                                 >
+        //                                   <Link
+        //                                     to={`/bottle/${singleBottle._id}`}
+        //                                   >
+        //                                     <p key={singleBottle._id}>
+        //                                       {singleBottle.name}
+        //                                     </p>
+        //                                   </Link>
+        //                                 </p>
+        //                                 <p className="subtitle is-6"></p>
+        //                               </div>
+        //                             </div>
+
+        //                             <div className="content">
+        //                               {/* {bottle.description} */}
+        //                               <br />
+        //                               <p>
+        //                                 <b>Vintage:</b> {singleBottle.year}
+        //                               </p>
+        //                               <p>
+        //                                 <b>Price: </b>
+        //                                 <span>$</span>
+        //                                 {singleBottle.price}
+        //                               </p>
+        //                               <p>
+        //                                 <b>Origin: </b> {singleBottle.country}
+        //                               </p>
+        //                             </div>
+        //                           </div>
+        //                           <footer className="card-footer">
+        //                             <>
+        //                             <a href="#" className="card-footer-item">
+        //                               Save
+        //                             </a>
+        //                             <Link
+        //                               to={`/bottle/${singleBottle._id}`}
+        //                               className="card-footer-item"
+        //                             >
+        //                               Info
+        //                             </Link>
+        //                             <a href="#" className="card-footer-item">
+        //                               Buy
+        //                             </a>
+        //                             </>
+        //                           </footer>
+        //                         </div>
+        //                       </div>
+        //                     </div>
+        //                   );
+        //                 })}
+        //               </div>
+
+        // </div>
 
     )
   }
 }
+
+
+          
+
+
+        

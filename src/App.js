@@ -84,6 +84,27 @@ getBottles = () => {
 }
 
 
+  //Sort wines by year
+  sortByYear = () => {
+    let sortWinesByYear = [...this.state.wines];
+    sortWinesByYear.sort((a, b) => b.year - a.year);
+
+    this.setState({
+      filteredWine: sortWinesByYear,
+    });
+  };
+
+
+  sortByPrice = () => {
+    let sortWinesByPrice = [...this.state.wines];
+    sortWinesByPrice.sort((a, b) => a.price - b.price);
+
+    this.setState({
+      filteredWine: sortWinesByPrice,
+    });
+  };
+
+
   //add a new bottle for sell
   addBottle = (e) => {
     e.preventDefault()
@@ -280,7 +301,7 @@ handleUnMount = () => {
 
         <Switch>
         <Route exact path="/" render={() => {
-              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle}/> 
+              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle}/> 
         }} />
         <Route path="/sign-in" render={(rProps) => {
           return <SignIn onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignIn={this.handleSignIn} {...rProps} />

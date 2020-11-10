@@ -43,8 +43,11 @@ export default function WineBottles(props) {
       <Jumbotron>
       <h1>Wine Connoisseur</h1>
             <p>Exceptionnal Vintage Wine waiting to find a new owner.</p>
-            
+      <div className="filterbox">     
         <div><button type="submit" class="btn-hover color-11"><Link to={"/add-bottle"} style={{color: "white"}}>Sell a bottle</Link></button></div>
+        <div><button onClick={() => {props.onClick(props.sortByYear)}} type="submit" class="btn-hover color-11" style={{color: "white"}}>Filter by Year</button></div>
+        <div><button onClick={() => {props.onClick(props.sortByPrice)}} type="submit" class="btn-hover color-11" style={{color: "white"}}>Filter by Price</button></div>
+      </div> 
         {/* <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input>  */}
 
       </Jumbotron>

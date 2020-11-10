@@ -43,7 +43,7 @@ export default class BottleDetails extends Component {
 
 
         return (
-            <body className="body">
+            <body className="body bodyDetails">
                 <div className="box">
                     <div className="middlebox">
 

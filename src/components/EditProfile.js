@@ -72,8 +72,8 @@ export default class EditProfile extends Component {
           </div>
         </form>
         <div>
-          <button
-            onClick={() => { this.props.onEdit(this.state.profile) }}
+          <button 
+            onClick={(e) => {this.props.onEdit(e, this.state.profile)}}
             className="form-field btn-hover color-11 animation a12"
             type="submit"
           >

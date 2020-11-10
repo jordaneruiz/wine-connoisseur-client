@@ -1,38 +1,30 @@
 import React, { useState, useEffect } from "react";
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
-import {API_URL} from '../config'
-
-
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { API_URL } from "../config";
 
 export default function CheckoutForm(props) {
-
-
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
-  const [processing, setProcessing] = useState('');
+  const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState('');
+  const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   useEffect(() => {
-    console.log("in checkout form", props)
+    console.log("in checkout form", props);
     // Create PaymentIntent as soon as the page loads
     window
       .fetch(`${API_URL}/create-payment-intent`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({wine: props.wine})
+        body: JSON.stringify({ wine: props.wine }),
       })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setClientSecret(data.clientSecret);
       });
   }, []);
@@ -40,18 +32,18 @@ export default function CheckoutForm(props) {
     style: {
       base: {
         color: "#32325d",
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: "Arial, sans-serif",
         fontSmoothing: "antialiased",
         fontSize: "16px",
         "::placeholder": {
-          color: "#32325d"
-        }
+          color: "#32325d",
+        },
       },
       invalid: {
         color: "#fa755a",
-        iconColor: "#fa755a"
-      }
-    }
+        iconColor: "#fa755a",
+      },
+    },
   };
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
@@ -59,13 +51,13 @@ export default function CheckoutForm(props) {
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
-  const handleSubmit = async ev => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     setProcessing(true);
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement)
-      }
+        card: elements.getElement(CardElement),
+      },
     });
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
@@ -78,53 +70,59 @@ export default function CheckoutForm(props) {
   };
   return (
     <section className="checkoutbody">
-    <div className="body">
-    <div className="box">
+      <div className="body">
+        <div className="box">
           <div className="middlebox">
             <div>
               <div className="subbox">
-    Please, provide your payment information to process. 
-    
-    <form className="checkoutform" id="payment-form" onSubmit={handleSubmit}>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      <button
-        disabled={processing || disabled || succeeded}
-        id="submit"
-      >
-        <span id="button-text">
-          {processing ? (
-            <div className="spinner" id="spinner"></div>
-          ) : (
-            "Pay"
-          )}
-        </span>
-      </button>
-      {/* Show any error that happens when processing the payment */}
-      {error && (
-        <div className="card-error" role="alert">
-          {error}
-        </div>
-      )}
-      {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {" "}
-          Stripe dashboard.
-        </a> Refresh the page to pay again.
-      </p>
-    </form>
-    </div>
-
-                </div>
+                Please, provide your payment information to process.
+                <form
+                  className="checkoutform"
+                  id="payment-form"
+                  onSubmit={handleSubmit}
+                >
+                  <CardElement
+                    id="card-element"
+                    options={cardStyle}
+                    onChange={handleChange}
+                  />
+                  <button
+                    disabled={processing || disabled || succeeded}
+                    id="submit"
+                  >
+                    <span id="button-text">
+                      {processing ? (
+                        <div className="spinner" id="spinner"></div>
+                      ) : (
+                        "Pay"
+                      )}
+                    </span>
+                  </button>
+                  {/* Show any error that happens when processing the payment */}
+                  {error && (
+                    <div className="card-error" role="alert">
+                      {error}
+                    </div>
+                  )}
+                  {/* Show a success message upon completion */}
+                  <p
+                    className={
+                      succeeded ? "result-message" : "result-message hidden"
+                    }
+                  >
+                    Payment succeeded, see the result in your
+                    <a href={`https://dashboard.stripe.com/test/payments`}>
+                      {" "}
+                      Stripe dashboard.
+                    </a>{" "}
+                    Refresh the page to pay again.
+                  </p>
+                </form>
+              </div>
             </div>
           </div>
         </div>
-
-
-
+      </div>
     </section>
   );
 }
