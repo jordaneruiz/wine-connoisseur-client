@@ -6,53 +6,56 @@ import { Card, Button } from "react-bootstrap";
 
 export default class Profile extends Component {
   state = {
-    profile: {},
+    profile: null,
     wines: [],
     purchasedWines: [],
     soldBottles: [],
   };
 
   componentDidMount() {
-    let id = this.props.match.params.userId;
+    //somecode
+    const { loggedInUser } = this.props;
 
-    //fetch seller user information
-    axios
-      .get(`${API_URL}/profile/${id}`, { withCredentials: true })
-      .then((resp) => {
-        // console.log("this.props.match.params is ", this.props.match.params)
-        // console.log("resp.data is ", resp.data)
-        this.setState({
-          profile: resp.data,
+    //fetch loggedin user information displayed on profile
+    if (!this.state.profile) {
+      axios
+        .get(`${API_URL}/profile`, { withCredentials: true })
+        .then((resp) => {
+          console.log("resp is : ", resp);
+          console.log("loggedInUser is: ", loggedInUser);
+          this.setState({
+            profile: resp.data,
+          });
         });
-      });
+    }
 
-    //get all the bottles the user is selling
-
-    let userId = this.props.match.params.userId;
-    console.log("!!!! userId is ", userId);
+    //to get loggedin user's bottles he is selling
     axios
-      .get(`${API_URL}/userBottles/${userId}`, { withCredentials: true })
+      .get(`${API_URL}/userBottles`, { withCredentials: true })
       .then((wines) => {
-        console.log("!!!!! bottles are: ", wines.data);
+        console.log("bottles are: ", wines.data);
+        console.log("loggedInUser._id is", loggedInUser._id);
 
         this.setState({
           wines: wines.data,
         });
       });
 
-    //to get the user's purchased bottles
-    axios
+      //to get loggedin user's purchased bottles 
+      axios
       .get(`${API_URL}/userBottlesPurchased`, { withCredentials: true })
       .then((purchased) => {
         console.log("purchased bottles are: ", purchased.data);
+        console.log("loggedInUser._id is", loggedInUser._id);
 
         this.setState({
           purchasedWines: purchased.data,
         });
       });
 
-    //to get the user's sold bottles
-    axios
+
+      //to get loggedin user's sold bottles 
+      axios
       .get(`${API_URL}/userBottlesSold`, { withCredentials: true })
       .then((sales) => {
         console.log("sold bottles are: ", sales.data);
@@ -61,25 +64,63 @@ export default class Profile extends Component {
           soldBottles: sales.data,
         });
       });
-  }
+
+}
+
+  
+
+  editProfile = (e, profile) => {
+    e.preventDefault()
+
+    axios
+      .patch(
+        `${API_URL}/profile/edit`,
+        {
+          username: profile.username,
+          bio: profile.bio,
+          location: profile.location,
+        },
+        { withCredentials: true }
+      )
+      .then(() => {
+        let updateProfile = this.state.profile.map((myProfile) => {
+          if (myProfile._id == profile._id) {
+            myProfile = profile;
+          }
+          return myProfile;
+        });
+
+        this.setState(
+          {
+            profile: updateProfile,
+          },
+          () => {
+            this.props.history.push("/profile");
+          }
+        );
+      });
+  };
 
   render() {
-    const { loggedInUser } = this.props;
-    const { username, bio, location } = this.state.profile;
+    const { loggedInUser, username } = this.props;
+    // const {username} = this.state.profile
 
     if (!loggedInUser) {
       return <Redirect to={"/sign-in"} />;
     }
 
+    if (!this.state.profile) {
+      return <h3>Loading...</h3>;
+    }
     return (
       <body className="body">
         <section className="margin-section">
           <Card>
-            <Card.Header className="welcome-title"><h2>Welcome, this is {username}'s profile</h2></Card.Header>
+            <Card.Header className="welcome-title"><h2>Welcome {this.state.profile.username}</h2></Card.Header>
             <Card.Body>
-              <Card.Title>{username}'s Biographie</Card.Title>
-              <Card.Text>{bio}</Card.Text>
-              <Card.Title>{username}'s current sales:</Card.Title>
+              <Card.Title>Your biographie</Card.Title>
+              <Card.Text>{this.state.profile.bio}</Card.Text>
+              <Card.Title>Your current sales:</Card.Title>
               <div className="middlebox">
                 {this.state.wines.map((singleBottle) => {
                   return (
@@ -93,6 +134,7 @@ export default class Profile extends Component {
                             <figure className="image is-4by3">
                               <img
                                 src={singleBottle.image}
+                                style={{ width: "100%" }}
                                 alt="Placeholder image"
                               />
                             </figure>
@@ -132,18 +174,20 @@ export default class Profile extends Component {
                           </div>
                           <footer className="card-footer">
                             <>
-                              <a href="#" className="card-footer-item">
-                                Save
-                              </a>
                               <Link
-                                to={`/bottle/${singleBottle._id}`}
                                 className="card-footer-item"
+                                onClick={() => {
+                                  this.props.onDelete(singleBottle._id);
+                                }}
                               >
-                                Info
+                                Delete
                               </Link>
-                              <a href="#" className="card-footer-item">
-                                Buy
-                              </a>
+                              <Link
+                                className="card-footer-item"
+                                to={`/bottle/${singleBottle._id}/edit`}
+                              >
+                                Edit
+                              </Link>
                             </>
                           </footer>
                         </div>
@@ -152,10 +196,12 @@ export default class Profile extends Component {
                   );
                 })}
               </div>
-              Sold Bottles:
+
+              PURCHASED BOTTLES:
               <section className="middlebox">
                 {this.state.purchasedWines.map((purchasedBottle) => {
                   return (
+
                     <div>
                       <div className="subbox">
                         <div
@@ -206,22 +252,97 @@ export default class Profile extends Component {
                           </div>
                           <footer className="card-footer">
                             <>
-                              <Link
-                                to={`/bottle/${purchasedBottle._id}`}
-                                className="card-footer-item"
-                              >
-                                Info
-                              </Link>
+                            <Link
+                        to={`/bottle/${purchasedBottle._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
                             </>
                           </footer>
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  ) } ) }
               </section>
-            
-            
+
+
+              SOLD BOTTLES:
+              <section className="middlebox">
+                {this.state.soldBottles.map((soldBottles) => {
+                  return (
+
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={soldBottles.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${soldBottles._id}`}>
+                                    <p key={soldBottles._id}>
+                                      {soldBottles.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {soldBottles.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {soldBottles.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {soldBottles.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                            <Link
+                        to={`/bottle/${soldBottles._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  ) } ) }
+              </section>
+
+
+
+              <div class="bbuttons">
+                <Link to={`/profile/edit`} /*onEdit={this.editProfile}*/>
+                  <button class="btn-hover color-11 ">Edit my profile</button>
+                </Link>
+              </div>{" "}
             </Card.Body>
           </Card>
         </section>

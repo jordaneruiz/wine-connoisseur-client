@@ -118,8 +118,217 @@ export default class Profile extends Component {
             <Card.Body>
               <Card.Title>Your biographie</Card.Title>
               <Card.Text>{this.state.profile.bio}</Card.Text>
-              <Card.Title>Your Dashboard</Card.Title>
-              
+              <Card.Title>Your current sales:</Card.Title>
+              <div className="middlebox">
+                {this.state.wines.map((singleBottle) => {
+                  return (
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={singleBottle.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${singleBottle._id}`}>
+                                    <p key={singleBottle._id}>
+                                      {singleBottle.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {singleBottle.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {singleBottle.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {singleBottle.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                              <Link
+                                className="card-footer-item"
+                                onClick={() => {
+                                  this.props.onDelete(singleBottle._id);
+                                }}
+                              >
+                                Delete
+                              </Link>
+                              <Link
+                                className="card-footer-item"
+                                to={`/bottle/${singleBottle._id}/edit`}
+                              >
+                                Edit
+                              </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              PURCHASED BOTTLES:
+              <section className="middlebox">
+                {this.state.purchasedWines.map((purchasedBottle) => {
+                  return (
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={purchasedBottle.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${purchasedBottle._id}`}>
+                                    <p key={purchasedBottle._id}>
+                                      {purchasedBottle.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {purchasedBottle.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {purchasedBottle.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {purchasedBottle.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                              <Link
+                                to={`/bottle/${purchasedBottle._id}`}
+                                className="card-footer-item"
+                              >
+                                Info
+                              </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </section>
+              SOLD BOTTLES:
+              <div className="middlebox">
+                {this.state.soldBottles.map((soldBottles) => {
+                  return (
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={soldBottles.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${soldBottles._id}`}>
+                                    <p key={soldBottles._id}>
+                                      {soldBottles.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {soldBottles.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {soldBottles.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {soldBottles.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                              <Link
+                                to={`/bottle/${soldBottles._id}`}
+                                className="card-footer-item"
+                              >
+                                Info
+                              </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
 
                 <div class="tabset">
                   <input
@@ -375,7 +584,7 @@ export default class Profile extends Component {
                     </section>
                   </div>
                 </div>
-              
+              </div>
               <div class="bbuttons">
                 <Link to={`/profile/edit`} /*onEdit={this.editProfile}*/>
                   <button class="btn-hover color-11 ">Edit my profile</button>

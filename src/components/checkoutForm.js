@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { API_URL } from "../config";
-import axios from 'axios'
+import axios from "axios";
+import { Card, Button } from "react-bootstrap";
 
 export default function CheckoutForm(props) {
   const [succeeded, setSucceeded] = useState(false);
@@ -27,7 +28,6 @@ export default function CheckoutForm(props) {
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
-    
       });
   }, []);
   const cardStyle = {
@@ -65,15 +65,17 @@ export default function CheckoutForm(props) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
-      
-      axios.post(`${API_URL}/updateWineBuyer`, 
-            { wine: props.wine }, {withCredentials: true}
-          )
-          .then(() => {
-            setError(null);
-            setProcessing(false);
-            setSucceeded(true);
-          });
+      axios
+        .post(
+          `${API_URL}/updateWineBuyer`,
+          { wine: props.wine },
+          { withCredentials: true }
+        )
+        .then(() => {
+          setError(null);
+          setProcessing(false);
+          setSucceeded(true);
+        });
     }
   };
   return (
@@ -82,7 +84,19 @@ export default function CheckoutForm(props) {
         <div className="box">
           <div className="middlebox">
             <div>
-              <div className="subbox">
+              <div className="paymentbox" >
+                <Card border="" style={{ width: "28rem" }}>
+                  <Card.Header>{props.wine.name}</Card.Header>
+                  <Card.Body>
+                    <Card.Title><span>$</span>{props.wine.price}</Card.Title>
+                    <Card.Text>
+                      As soon as your payment will be proceed, we will notify the seller. 
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <p>
+                  
+                </p>
                 Please, provide your payment information to process.
                 <form
                   className="checkoutform"
