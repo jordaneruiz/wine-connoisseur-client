@@ -51,9 +51,9 @@ console.log("props.wines: ", props.wines)
       </Jumbotron>
 
       <div className="box">
-        <h1>WINE BOTTLES PAGE</h1>
         
-        <p>{props.loggedInUser ? <p>User is: {props.loggedInUser.username} </p>: <p>"You need to sign-in or sign-up to see more details about our wines"</p>}</p>
+        
+        <div>{props.loggedInUser ? <h2> {props.loggedInUser.username}, it's time to buy some treasure</h2> : <p>Time to buy some treasure</p>}</div>
         <div className="middlebox">
 
 

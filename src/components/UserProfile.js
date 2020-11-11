@@ -18,7 +18,6 @@ export default class Profile extends Component {
           axios.get(`${API_URL}/profile/${id}`, {withCredentials: true})
           .then((resp) => {
             // console.log("this.props.match.params is ", this.props.match.params)
-            // console.log("resp is ", resp)
             // console.log("resp.data is ", resp.data)
             this.setState({
             profile: resp.data
@@ -141,91 +140,6 @@ export default class Profile extends Component {
           </Card>
         </section>
       </body>
-
-        // <div className="profile">
-        //         <p>Welcome, this is {username}'s profile</p>
-        //         <p>{username}'s description {bio}</p>
-
-
-        //         <p>{username}'s sellings</p>
-
-        //         <div className="middlebox">
-        //                 {this.state.wines.map((singleBottle) => {
-        //                   return (
-        //                     <div>
-        //                       <div className="subbox">
-        //                         <div
-        //                           className="cardo wine-card"
-        //                           style={{ width: "18em" }}
-        //                         >
-        //                           <div className="card-image">
-        //                             <figure className="image is-4by3">
-        //                               <img
-        //                                 src={singleBottle.image}
-        //                                 alt="Placeholder image"
-        //                               />
-        //                             </figure>
-        //                           </div>
-        //                           <div className="card-content">
-        //                             <div className="media">
-        //                               <div className="media-content">
-        //                                 <p
-        //                                   className="title is-4"
-        //                                   style={{ height: "1em" }}
-        //                                 >
-        //                                   <Link
-        //                                     to={`/bottle/${singleBottle._id}`}
-        //                                   >
-        //                                     <p key={singleBottle._id}>
-        //                                       {singleBottle.name}
-        //                                     </p>
-        //                                   </Link>
-        //                                 </p>
-        //                                 <p className="subtitle is-6"></p>
-        //                               </div>
-        //                             </div>
-
-        //                             <div className="content">
-        //                               {/* {bottle.description} */}
-        //                               <br />
-        //                               <p>
-        //                                 <b>Vintage:</b> {singleBottle.year}
-        //                               </p>
-        //                               <p>
-        //                                 <b>Price: </b>
-        //                                 <span>$</span>
-        //                                 {singleBottle.price}
-        //                               </p>
-        //                               <p>
-        //                                 <b>Origin: </b> {singleBottle.country}
-        //                               </p>
-        //                             </div>
-        //                           </div>
-        //                           <footer className="card-footer">
-        //                             <>
-        //                             <a href="#" className="card-footer-item">
-        //                               Save
-        //                             </a>
-        //                             <Link
-        //                               to={`/bottle/${singleBottle._id}`}
-        //                               className="card-footer-item"
-        //                             >
-        //                               Info
-        //                             </Link>
-        //                             <a href="#" className="card-footer-item">
-        //                               Buy
-        //                             </a>
-        //                             </>
-        //                           </footer>
-        //                         </div>
-        //                       </div>
-        //                     </div>
-        //                   );
-        //                 })}
-        //               </div>
-
-        // </div>
-
     )
   }
 }
