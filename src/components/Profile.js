@@ -197,8 +197,8 @@ export default class Profile extends Component {
                 })}
               </div>
 
-              <section>
-                PURCHASED BOTTLES:
+              PURCHASED BOTTLES:
+              <section className="middlebox">
                 {this.state.purchasedWines.map((purchasedBottle) => {
                   return (
 
@@ -267,9 +267,8 @@ export default class Profile extends Component {
               </section>
 
 
-
-              <section>
-                SOLD BOTTLES:
+              SOLD BOTTLES:
+              <section className="middlebox">
                 {this.state.soldBottles.map((soldBottles) => {
                   return (
 

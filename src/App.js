@@ -108,7 +108,7 @@ getBottles = () => {
   //add a new bottle for sell
   addBottle = (e) => {
     e.preventDefault()
-    const {name, year, price, description, country, region, grappeVariety, color, image,} = e.target
+    const {name, year, price, description, country, region, grappeVariety, color, image, saleStatus} = e.target
     // const {loggedInUser} = this.state
       console.log(image.files)
     // //this is an array so you have to do it like this: 
