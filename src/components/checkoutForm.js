@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { API_URL } from "../config";
+import axios from 'axios'
 
 export default function CheckoutForm(props) {
   const [succeeded, setSucceeded] = useState(false);
@@ -26,6 +27,7 @@ export default function CheckoutForm(props) {
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
+    
       });
   }, []);
   const cardStyle = {
@@ -63,9 +65,15 @@ export default function CheckoutForm(props) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
+      
+      axios.post(`${API_URL}/updateWineBuyer`, 
+            { wine: props.wine }, {withCredentials: true}
+          )
+          .then(() => {
+            setError(null);
+            setProcessing(false);
+            setSucceeded(true);
+          });
     }
   };
   return (

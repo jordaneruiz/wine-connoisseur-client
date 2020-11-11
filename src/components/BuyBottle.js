@@ -33,6 +33,13 @@ componentDidMount() {
         })
 }
 
+//once teh state is updates with the bottle that has been bought you have to:
+//- remove it from the seller's profile
+//- display it on the buyer'sprofile
+//put the money on the seler account
+//have to remove the "seller id" from the wiine bottle model?
+//and add a "buyer id??"
+
 
 
   render() {
@@ -45,6 +52,10 @@ componentDidMount() {
     if (!this.state.wine) return <h2>Loading...</h2>
 
     return (
+
+
+
+      
       <div className="App">
         <Elements stripe={promise}>
           <CheckoutForm  wine={this.state.wine}/>

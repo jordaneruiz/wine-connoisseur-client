@@ -6,11 +6,9 @@ import { Carousel, Jumbotron, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function WineBottles(props) {
-  //console.log(props.wines);
-// console.log("props.wines: ", props.wines)
+console.log(props.wines);
+console.log("props.wines: ", props.wines)
 // console.log("props.loggedInUser", props.loggedInUser)
-// console.log("props.loggedInUser._id", props.loggedInUser._id)
-// console.log("props.wines.userSeller", props.wines.userSeller)
 
   return (
     <body className="body">

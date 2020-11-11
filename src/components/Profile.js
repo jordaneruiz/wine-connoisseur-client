@@ -8,6 +8,8 @@ export default class Profile extends Component {
   state = {
     profile: null,
     wines: [],
+    purchasedWines: [],
+    soldBottles: [],
   };
 
   componentDidMount() {
@@ -38,7 +40,34 @@ export default class Profile extends Component {
           wines: wines.data,
         });
       });
-  }
+
+      //to get loggedin user's purchased bottles 
+      axios
+      .get(`${API_URL}/userBottlesPurchased`, { withCredentials: true })
+      .then((purchased) => {
+        console.log("purchased bottles are: ", purchased.data);
+        console.log("loggedInUser._id is", loggedInUser._id);
+
+        this.setState({
+          purchasedWines: purchased.data,
+        });
+      });
+
+
+      //to get loggedin user's sold bottles 
+      axios
+      .get(`${API_URL}/userBottlesSold`, { withCredentials: true })
+      .then((sales) => {
+        console.log("sold bottles are: ", sales.data);
+
+        this.setState({
+          soldBottles: sales.data,
+        });
+      });
+
+}
+
+  
 
   editProfile = (e, profile) => {
     e.preventDefault()
@@ -167,6 +196,149 @@ export default class Profile extends Component {
                   );
                 })}
               </div>
+
+              <section>
+                PURCHASED BOTTLES:
+                {this.state.purchasedWines.map((purchasedBottle) => {
+                  return (
+
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={purchasedBottle.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${purchasedBottle._id}`}>
+                                    <p key={purchasedBottle._id}>
+                                      {purchasedBottle.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {purchasedBottle.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {purchasedBottle.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {purchasedBottle.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                            <Link
+                        to={`/bottle/${purchasedBottle._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  ) } ) }
+              </section>
+
+
+
+              <section>
+                SOLD BOTTLES:
+                {this.state.soldBottles.map((soldBottles) => {
+                  return (
+
+                    <div>
+                      <div className="subbox">
+                        <div
+                          className="cardo wine-card"
+                          style={{ width: "18em" }}
+                        >
+                          <div className="card-image">
+                            <figure className="image is-4by3">
+                              <img
+                                src={soldBottles.image}
+                                style={{ width: "100%" }}
+                                alt="Placeholder image"
+                              />
+                            </figure>
+                          </div>
+                          <div className="card-content">
+                            <div className="media">
+                              <div className="media-content">
+                                <p
+                                  className="title is-4"
+                                  style={{ height: "1em" }}
+                                >
+                                  <Link to={`/bottle/${soldBottles._id}`}>
+                                    <p key={soldBottles._id}>
+                                      {soldBottles.name}
+                                    </p>
+                                  </Link>
+                                </p>
+                                <p className="subtitle is-6"></p>
+                              </div>
+                            </div>
+
+                            <div className="content">
+                              {/* {bottle.description} */}
+                              <br />
+                              <p>
+                                <b>Vintage:</b> {soldBottles.year}
+                              </p>
+                              <p>
+                                <b>Price: </b>
+                                <span>$</span>
+                                {soldBottles.price}
+                              </p>
+                              <p>
+                                <b>Origin: </b> {soldBottles.country}
+                              </p>
+                            </div>
+                          </div>
+                          <footer className="card-footer">
+                            <>
+                            <Link
+                        to={`/bottle/${soldBottles._id}`}
+                        className="card-footer-item"
+                      >
+                        Info
+                      </Link>
+                            </>
+                          </footer>
+                        </div>
+                      </div>
+                    </div>
+                  ) } ) }
+              </section>
+
+
+
               <div class="bbuttons">
                 <Link to={`/profile/edit`} /*onEdit={this.editProfile}*/>
                   <button class="btn-hover color-11 ">Edit my profile</button>

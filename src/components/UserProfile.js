@@ -29,10 +29,10 @@ export default class Profile extends Component {
           //get all the bottles the user is selling
           
           let userId = this.props.match.params.userId
-          console.log("userId is ", userId)
+          console.log("!!!! userId is ", userId)
           axios.get(`${API_URL}/userBottles/${userId}`, {withCredentials: true})
           .then((wines) => {
-            console.log("bottles are: ", wines.data)
+            console.log("!!!!! bottles are: ", wines.data)
             
 
             this.setState({
