@@ -35,6 +35,7 @@ class App extends Component {
     loggedInUser: null, 
     errorMessage: null, 
     showPage: false,
+    profile: null,
   }
 
 
@@ -52,6 +53,18 @@ class App extends Component {
     } else {
       this.getBottles()
     }
+
+         //fetch loggedin user information displayed on profile
+    if (!this.state.profile) {
+      axios
+        .get(`${API_URL}/profile`, { withCredentials: true })
+        .then((resp) => {
+          console.log("resp is : ", resp);
+          this.setState({
+            profile: resp.data,
+          });
+        });
+    }
 }
 
 getBottles = () => {
@@ -67,6 +80,38 @@ getBottles = () => {
   })
 }
 
+
+editProfile = (e, profile) => {
+  e.preventDefault();
+
+  axios
+    .patch(
+      `${API_URL}/profile/edit`,
+      {
+        username: profile.username,
+        bio: profile.bio,
+        location: profile.location,
+      },
+      { withCredentials: true }
+    )
+    .then((updateProfile) => {
+      // let updateProfile = this.state.profile.map((myProfile) => {
+      //   if (myProfile._id == profile._id) {
+      //     myProfile = profile;
+      //   }
+      //   return myProfile;
+      // });
+
+      this.setState(
+        {
+          profile: updateProfile,
+        },
+        () => {
+          this.props.history.push("/profile");
+        }
+      );
+    });
+};
 
   //search for a specific bottle
   searchBottle = (event) => {

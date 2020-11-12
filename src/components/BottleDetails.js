@@ -98,18 +98,9 @@ export default class BottleDetails extends Component {
                     </div>
                   </div>
                   <footer className="card-footer">
-                    {/* <a href="#" Name="card-footer-item">
-                        Save
-                      </a>
-                      <a href="#" className="card-footer-item">
-                        Seller
-                    </a>
-                      <a href="#" className="card-footer-item">
-                        Buy
-                      </a>    */}
+                   
 
                     {
-                      //loggedInUser._id !== userSeller ?
                       saleStatus === true ? (
                         <>
                         <Link
@@ -165,24 +156,3 @@ export default class BottleDetails extends Component {
     );
   }
 }
-
-// {
-//   this.props.loggedInUser._id !== userSeller ?
-//   <>
-//   <a href="#" className="card-footer-item">
-//     Save
-//   </a>
-//   <a href="#" className="card-footer-item">
-//     Seller
-// </a>
-//   <a href="#" className="card-footer-item">
-//     Buy
-//   </a>
-//   </>
-//   :
-
-//   <>
-//   <button onClick={() => { this.props.onDelete(_id) }}>Delete</button>
-//   <Link to={`/bottle/${_id}/edit`}><button>Edit</button></Link>
-//   </>
-// }

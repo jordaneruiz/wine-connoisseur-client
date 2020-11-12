@@ -3,8 +3,10 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { API_URL } from "../config";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
-export default function CheckoutForm(props) {
+
+function CheckoutForm(props) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -77,6 +79,7 @@ export default function CheckoutForm(props) {
           setError(null);
           setProcessing(false);
           setSucceeded(true);
+          props.history.push('/profile')
         }/*, () => {
           props.history.push('/')
         }*/);
@@ -152,3 +155,5 @@ export default function CheckoutForm(props) {
     </section>
   );
 }
+
+export default withRouter(CheckoutForm);

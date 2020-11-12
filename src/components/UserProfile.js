@@ -70,6 +70,10 @@ export default class Profile extends Component {
       return <Redirect to={"/sign-in"} />;
     }
 
+    if (loggedInUser._id === this.state.profile._id){
+      return <Redirect to={"/profile"} />;
+    }
+
     return (
       <body className="body">
         <section className="margin-section">

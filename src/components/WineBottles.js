@@ -108,9 +108,6 @@ console.log("props.wines: ", props.wines)
 
                       (!props.loggedInUser) ?    
                         <>
-                        <a href="#" className="card-footer-item">
-                        Save
-                      </a>
                       <Link
                         to={`/bottle/${bottle._id}`}
                         className="card-footer-item"
@@ -128,9 +125,6 @@ console.log("props.wines: ", props.wines)
                       : props.loggedInUser._id !== bottle.userSeller ?
 
                       <>
-                        <a href="#" className="card-footer-item">
-                        Save
-                      </a>
                       <Link
                         to={`/bottle/${bottle._id}`}
                         className="card-footer-item"
