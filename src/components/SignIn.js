@@ -11,7 +11,7 @@ export default function SignIn(props) {
   return (
     <section className="margin-form">
     <form onSubmit={props.onSignIn}>
-        <div className="container">
+        <div className="container" /*style={{marginTop: "100px"}}*/>
         <div className="left">
             <div className="header">
             <h2 className="animation a1">Welcome Back</h2>
@@ -28,31 +28,7 @@ export default function SignIn(props) {
         <div className="right-signin"></div>
         </div>
 
-      {/* <div>
-        <label htmlFor="exampleInputEmail1">Email address</label>
-        <input
-          onChange={props.onUnmount}
-          type="text"
-          classNameNameNameName="new-classNameNameName"
-          id="exampleInputEmail1"
-          name="email"
-          aria-describedby="emailHelp"
-        />
-      </div>
-      <div>
-        <label htmlFor="exampleInputPassword1">Password</label>
-        <input
-          name="password"
-          type="password"
-          classNameNameNameName="new-classNameNameName"
-          id="exampleInputPassword1"
-        />
-      </div>
-      <button type="submit" classNameNameNameName="newclassNameNameName">
-        Submit
-      </button> */}
-
-      
+    
 
       {props.errorMessage ? (
         <p style={{ color: "red" }}>{props.errorMessage}</p>

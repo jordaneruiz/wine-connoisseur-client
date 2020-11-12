@@ -23,11 +23,11 @@ export default function NaviBar(props) {
           </Nav>
             <div className="logbtn">
             { props.loggedInUser ? (
-               <button className="mr-sm-2" variant="outline-primary" className="button is-light has-background-light has-text-danger-dark" onClick={props.onLogout}>Logout</button>
+               <button className="mr-sm-2" variant="outline-primary" className="button is-light has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} onClick={props.onLogout}>Logout</button>
                 ) : (
                 <>
-                <Link className="mr-sm-2" variant="outline-primary" className="logbtn1 button is-primary has-background-light has-text-danger-dark" to="/sign-in">Sign In</Link>
-                <Link className="mr-sm-2" variant="outline-primary" className="logbtn2 button is-primary has-background-light has-text-danger-dark" to="/sign-up">Sign Up</Link>            
+                <Link className="mr-sm-2" variant="outline-primary" className="logbtn1 button is-primary has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} to="/sign-in">Sign In</Link>
+                <Link className="mr-sm-2" variant="outline-primary" className="logbtn2 button is-primary has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} to="/sign-up">Sign Up</Link>            
                 </>
               )}
           </div>

@@ -100,7 +100,7 @@ export default class EditBottle extends Component {
 
         return (
                 <div>
-            <div className="body" style={{marginTop: "20px"}}>
+            <div className="body" >
         {/* return can only return a JSX donc la condition above can't be in this return bloc */}
        
             <form >

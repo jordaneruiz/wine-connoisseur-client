@@ -11,7 +11,7 @@ function AddBottle(props) {
         }
 
     return (
-        <div className="body" style={{marginTop: "20px"}}>
+        <div className="body" /*style={{marginTop: "70px"}}*/>
         {/* return can only return a JSX donc la condition above can't be in this return bloc */}
        
             <form onSubmit={props.onAdd} >
