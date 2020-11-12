@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { API_URL } from "../config";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 
 function CheckoutForm(props) {
@@ -79,7 +79,7 @@ function CheckoutForm(props) {
           setError(null);
           setProcessing(false);
           setSucceeded(true);
-          props.history.push('/profile')
+          // props.history.push('/profile')
         }/*, () => {
           props.history.push('/')
         }*/);
@@ -139,12 +139,16 @@ function CheckoutForm(props) {
                       succeeded ? "result-message" : "result-message hidden"
                     }
                   >
-                    Payment succeeded, see the result in your
+                  <br/>
+                  <hr/>
+                    <p style={{fontSize: "14px"}}>Payment succeeded. Go back to your <Link to={'/profile'}>profile</Link> to follow up with your purchases!</p>
+
+                    {/* Payment succeeded, see the result in your
                     <a href={`https://dashboard.stripe.com/test/payments`}>
                       {" "}
                       Stripe dashboard.
                     </a>{" "}
-                    Refresh the page to pay again.
+                    Refresh the page to pay again. */}
                   </p>
                 </form>
               </div>
