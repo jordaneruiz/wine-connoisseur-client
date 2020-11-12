@@ -78,7 +78,7 @@ export default class Profile extends Component {
             <Card.Body>
               <Card.Title>{username}'s Biographie</Card.Title>
               <Card.Text>{bio}</Card.Text>
-              <Card.Title>{username}'s current sales:</Card.Title>
+              <Card.Title></Card.Title>
 
 
 
@@ -128,7 +128,7 @@ export default class Profile extends Component {
                                     <div className="media">
                                       <div className="media-content">
                                         <p
-                                          className="title is-4"
+                                          className="title is-4 text-center text-center"
                                           style={{ height: "1em" }}
                                         >
                                           <Link
@@ -210,7 +210,7 @@ export default class Profile extends Component {
                             <div className="media">
                               <div className="media-content">
                                 <p
-                                  className="title is-4"
+                                  className="title is-4 text-center"
                                   style={{ height: "1em" }}
                                 >
                                   <Link to={`/bottle/${purchasedBottle._id}`}>
@@ -296,7 +296,7 @@ export default class Profile extends Component {
 //                             <div className="media">
 //                               <div className="media-content">
 //                                 <p
-//                                   className="title is-4"
+//                                   className="title is-4 text-center"
 //                                   style={{ height: "1em" }}
 //                                 >
 //                                   <Link to={`/bottle/${singleBottle._id}`}>
@@ -370,7 +370,7 @@ export default class Profile extends Component {
 //                             <div className="media">
 //                               <div className="media-content">
 //                                 <p
-//                                   className="title is-4"
+//                                   className="title is-4 text-center"
 //                                   style={{ height: "1em" }}
 //                                 >
 //                                   <Link to={`/bottle/${purchasedBottle._id}`}>

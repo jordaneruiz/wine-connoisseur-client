@@ -74,7 +74,7 @@ console.log("props.wines: ", props.wines)
                     <div className="card-content">
                       <div className="media">
                         <div className="media-content">
-                          <p className="title is-4" style={{ height: "2em"}}>
+                          <p className="title is-4 text-center" style={{ height: "2em"}}>
                             <Link to={`/bottle/${bottle._id}`}>
                               <p key={bottle._id}>{bottle.name}</p>
                             </Link>

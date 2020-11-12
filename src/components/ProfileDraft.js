@@ -143,7 +143,7 @@ export default class Profile extends Component {
                             <div className="media">
                               <div className="media-content">
                                 <p
-                                  className="title is-4"
+                                  className="title is-4 text-center"
                                   style={{ height: "1em" }}
                                 >
                                   <Link to={`/bottle/${singleBottle._id}`}>
@@ -221,7 +221,7 @@ export default class Profile extends Component {
                             <div className="media">
                               <div className="media-content">
                                 <p
-                                  className="title is-4"
+                                  className="title is-4 text-center"
                                   style={{ height: "1em" }}
                                 >
                                   <Link to={`/bottle/${purchasedBottle._id}`}>
@@ -291,7 +291,7 @@ export default class Profile extends Component {
                             <div className="media">
                               <div className="media-content">
                                 <p
-                                  className="title is-4"
+                                  className="title is-4 text-center"
                                   style={{ height: "1em" }}
                                 >
                                   <Link to={`/bottle/${soldBottles._id}`}>
