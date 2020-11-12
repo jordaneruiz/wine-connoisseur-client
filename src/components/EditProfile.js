@@ -51,7 +51,6 @@ export default class EditProfile extends Component {
               </div>
               <div className="form">
                 <input
-                  onChange={this.priceChange}
                   className="form-field "
                   value={bio}
                   name="bio"
@@ -59,7 +58,6 @@ export default class EditProfile extends Component {
                   placeholder="Enter bio description"
                 ></input>
                 <input
-                  onChange={this.priceChange}
                   className="form-field "
                   value={location}
                   name="location"

@@ -210,7 +210,12 @@ getBottles = () => {
         this.props.history.push('/')
       })
     })
-
+    .catch((err) => {
+      console.log(err.response.data)// you have to update the state to show the error message with this catch block 
+      this.setState({
+        errorMessage: err.response.data.error
+      })
+    })
 }
 
 
@@ -308,7 +313,7 @@ handleUnMount = () => {
         }}/>
 
         <Route path="/sign-up" render={(rProps) => {
-          return <SignUp onSignUp={this.handleSignUp} {...rProps} />
+          return <SignUp onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignUp={this.handleSignUp} {...rProps} />
         }}/>
 
         <Route path="/add-bottle" render={(rprops) => {

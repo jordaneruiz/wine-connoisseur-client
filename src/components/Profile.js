@@ -390,7 +390,7 @@ export default class Profile extends Component {
                 </div>
               </div>
               <div class="bbuttons">
-                <Link to={`/profile/edit`} /*onEdit={this.editProfile}*/>
+                <Link to={`/profile/edit`} onEdit={this.editProfile}>
                   <button class="btn-hover color-11 ">Edit my profile</button>
                 </Link>
               </div>{" "}

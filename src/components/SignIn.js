@@ -23,17 +23,13 @@ export default function SignIn(props) {
             <p className="animation a5"><a href="#">Forgot Password</a></p>
             {/* <button type="submit" className="animation a6">LOGIN</button> */}
             <div className="bbuttons"><button type="submit" className="btn-hover color-11 animation a6">LOGIN</button></div>
-            </div>
+            {props.errorMessage ? (
+        <p style={{ color: "red" }}>{props.errorMessage}</p>
+      ) : null}
+      </div>
         </div>
         <div className="right-signin"></div>
         </div>
-
-    
-
-      {props.errorMessage ? (
-        <p style={{ color: "red" }}>{props.errorMessage}</p>
-      ) : null}
-
 
     </form>
     </section>
