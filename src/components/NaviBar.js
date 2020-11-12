@@ -8,8 +8,8 @@ export default function NaviBar(props) {
 
 
       <>
-        <Navbar fixed="top" style={{backgroundColor: "#6e0d25", height: "6em", textColor: "#FFFFFF", marginBottom: "-30px"}} className="BackNav" bg="" variant="dark" >
-          <Navbar.Brand><img src="LOGOWINECOR.png" style={{height: "80px"}}/></Navbar.Brand>
+        <Navbar fixed="top" style={{backgroundColor: "#6e0d25", height: "5em", textColor: "#FFFFFF", marginBottom: "-30px"}} className="BackNav" bg="" variant="dark" >
+          <Navbar.Brand><img src="LOGOWINECOR.png" style={{height: "70px"}}/></Navbar.Brand>
           {/* <Link className="" to="/" className="">
       <img src="LogoW1.png"/>
   </Link> */}

@@ -29,7 +29,9 @@ export default function CheckoutForm(props) {
       .then((data) => {
         setClientSecret(data.clientSecret);
       });
-  }, []);
+  }, []/*, () => {
+    props.history.push('/')
+  }*/);
   const cardStyle = {
     style: {
       base: {
@@ -75,7 +77,9 @@ export default function CheckoutForm(props) {
           setError(null);
           setProcessing(false);
           setSucceeded(true);
-        });
+        }/*, () => {
+          props.history.push('/')
+        }*/);
     }
   };
   return (

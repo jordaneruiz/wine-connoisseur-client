@@ -100,7 +100,7 @@ export default class EditBottle extends Component {
 
         return (
                 <div>
-            <div className="body">
+            <div className="body" style={{marginTop: "60px"}}>
         {/* return can only return a JSX donc la condition above can't be in this return bloc */}
        
             <form >
@@ -110,21 +110,21 @@ export default class EditBottle extends Component {
                 <h2 className="animation a1">Time to make some changes!</h2>
                 <h4 className="animation a2">Make it desirable!</h4>
                 </div>
-                <div className="form">
+                <div className="form add-form">
 
-                        <input onChange={this.nameChange} className="form-field animation a3" value={name} name="name" type="text" placeholder="Enter name"></input>            
-                        <input onChange={this.yearChange} className="form-field animation a4" value={year} name="year" type="NUMBER" placeholder="Enter year"></input>
-                        <input onChange={this.priceChange} className="form-field animation a5" value={price} name="price" type="text" placeholder="Enter price"></input>
-                        <input onChange={this.descriptionChange} className="form-field animation a6" value={description} name="description" type="text" placeholder="Enter description"></input>
-                        <input onChange={this.countryChange} className="form-field animation a7" value={country} name="country" type="text" placeholder="Enter country"></input>
-                        <input onChange={this.regionChange} className="form-field animation a8" value={region} name="region" type="text" placeholder="Enter region"></input>
-                        <input onChange={this.grappeVarietyChange} className="form-field animation a9" value={grappeVariety} name="grappeVariety" type="text" placeholder="Enter grappeVariety"></input>
-                        <input onChange={this.colorChange} className="form-field animation a10" value={color} name="color" type="text" placeholder="Enter color"></input>
+                        <input onChange={this.nameChange} className="form-field-add animation a3" value={name} name="name" type="text" placeholder="Enter name"></input>            
+                        <input onChange={this.yearChange} className="form-field-add animation a4" value={year} name="year" type="NUMBER" placeholder="Enter year"></input>
+                        <input onChange={this.priceChange} className="form-field-add animation a5" value={price} name="price" type="text" placeholder="Enter price"></input>
+                        <input onChange={this.descriptionChange} className="form-field-add animation a6" value={description} name="description" type="text" placeholder="Enter description"></input>
+                        <input onChange={this.countryChange} className="form-field-add animation a7" value={country} name="country" type="text" placeholder="Enter country"></input>
+                        <input onChange={this.regionChange} className="form-field-add animation a8" value={region} name="region" type="text" placeholder="Enter region"></input>
+                        <input onChange={this.grappeVarietyChange} className="form-field-add animation a9" value={grappeVariety} name="grappeVariety" type="text" placeholder="Enter grappeVariety"></input>
+                        <input onChange={this.colorChange} className="form-field-add animation a10" value={color} name="color" type="text" placeholder="Enter color"></input>
                         <br/>
                         <input onChange={this.imageChange} className="animation a11" name="image" type="file"></input>
                         {/* <input type="file" classNameName="form-control" name="image" id="image" /> */}
                         <br/>
-                        <div><button onClick={(e) => { this.props.onEdit(e, this.state.wine) }} className="form-field btn-hover color-11 animation a12" type="submit">Save</button></div>
+                        <div><button onClick={(e) => { this.props.onEdit(e, this.state.wine) }} className="form-field-add btn-hover color-11 animation a12" type="submit">Save</button></div>
 
                 </div>
             </div>

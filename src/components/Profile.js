@@ -58,6 +58,9 @@ export default class Profile extends Component {
       .get(`${API_URL}/userBottlesSold`, { withCredentials: true })
       .then((sales) => {
         console.log("sold bottles are: ", sales.data);
+        // console.log(Number(sales.price) * sales.length)
+        // console.log(sales.length)
+
 
         this.setState({
           soldBottles: sales.data,
@@ -97,6 +100,10 @@ export default class Profile extends Component {
       });
   };
 
+  walletCompute = () => {
+    console.log("hey hey")
+  }
+
   render() {
     const { loggedInUser, username } = this.props;
     // const {username} = this.state.profile
@@ -108,9 +115,12 @@ export default class Profile extends Component {
     if (!this.state.profile) {
       return <h3>Loading...</h3>;
     }
+
     return (
       <body className="body">
         <section className="margin-section">
+        <p>My Wallet: {this.state.soldBottles.reduce((acc, bottle) =>  acc + Number(bottle.price), 0)} </p>
+        
           <Card>
             <Card.Header className="welcome-title">
               <h2>Welcome {this.state.profile.username}</h2>

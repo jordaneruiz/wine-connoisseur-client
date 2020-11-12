@@ -154,6 +154,18 @@ body {
   font-size: 14px;
 }
 
+.form-field-add {
+  height: 32px;
+  padding: 0 16px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Rubik', sans-serif;
+  outline: 0;
+  transition: .2s;
+  margin-top: 15px;
+}
+
+
 .form-field {
   height: 46px;
   padding: 0 16px;
@@ -566,9 +578,9 @@ button:disabled {
 }
 
 
-.body {
+/* .body {
   margin-top: 3rem;
-}
+} */
 
 .bodyDetails {
   margin-top: 5rem;
@@ -673,9 +685,9 @@ body {
   box-sizing: border-box;
 }
 
-body {
+/* body {
   padding: 30px;
-}
+} */
 
 .tabset {
   max-width: 165em;
