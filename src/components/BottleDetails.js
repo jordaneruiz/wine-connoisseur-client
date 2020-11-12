@@ -113,9 +113,6 @@ export default class BottleDetails extends Component {
                         </>
                       ) : loggedInUser._id !== userSeller ? (
                         <>
-                        <a href="#" className="card-footer-item">
-                            Save
-                          </a>
                           <Link
                             to={`/profile/${userSeller}`}
                             className="card-footer-item"
