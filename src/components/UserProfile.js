@@ -70,7 +70,7 @@ export default class Profile extends Component {
       return <Redirect to={"/sign-in"} />;
     }
 
-    if (loggedInUser._id === this.state.profile._id){
+    if (loggedInUser._id === this.state.profile._id) {
       return <Redirect to={"/profile"} />;
     }
 
@@ -78,190 +78,186 @@ export default class Profile extends Component {
       <body className="body">
         <section className="margin-section">
           <Card>
-            <Card.Header className="welcome-title"><h2>Welcome, this is {username}'s profile</h2></Card.Header>
+            <Card.Header className="welcome-title">
+              <h2>Welcome, this is {username}'s profile</h2>
+            </Card.Header>
             <Card.Body>
               <Card.Title>{username}'s Biographie</Card.Title>
               <Card.Text>{bio}</Card.Text>
               <Card.Title></Card.Title>
 
-
-
-
-
               <div class="tabset">
-                  <input
-                    type="radio"
-                    name="tabset"
-                    id="tab1"
-                    aria-controls="marzen"
-                    checked
-                  />
-                  <label for="tab1">CURRENT SALES</label>
+                <input
+                  type="radio"
+                  name="tabset"
+                  id="tab1"
+                  aria-controls="marzen"
+                  checked
+                />
+                <label for="tab1">CURRENT SALES</label>
 
-                  <input
-                    type="radio"
-                    name="tabset"
-                    id="tab2"
-                    aria-controls="rauchbier"
-                  />
-                  <label for="tab2">PAST SALES</label>
+                <input
+                  type="radio"
+                  name="tabset"
+                  id="tab2"
+                  aria-controls="rauchbier"
+                />
+                <label for="tab2">PAST SALES</label>
 
-
-                  <div class="tab-panels">
-                    <section id="marzen" class="tab-panel">
-                      <div className="middlebox">
-                        {this.state.wines.map((singleBottle) => {
-                          return (
-                            <div>
-                              <div className="subbox">
-                                <div
-                                  className="cardo wine-card"
-                                  style={{ width: "18em" }}
-                                >
-                                  <div className="card-image">
-                                    <figure className="image is-4by3">
-                                      <img
-                                        src={singleBottle.image}
-                                        style={{ width: "100%" }}
-                                        alt="Placeholder image"
-                                      />
-                                    </figure>
-                                  </div>
-                                  <div className="card-content">
-                                    <div className="media">
-                                      <div className="media-content">
-                                        <p
-                                          className="title is-4 text-center text-center"
-                                          style={{ height: "1em" }}
-                                        >
-                                          <Link
-                                            to={`/bottle/${singleBottle._id}`}
-                                          >
-                                            <p key={singleBottle._id}>
-                                              {singleBottle.name}
-                                            </p>
-                                          </Link>
-                                        </p>
-                                        <p className="subtitle is-6"></p>
-                                      </div>
-                                    </div>
-
-                                    <div className="content">
-                                      {/* {bottle.description} */}
-                                      <br />
-                                      <p>
-                                        <b>Vintage:</b> {singleBottle.year}
-                                      </p>
-                                      <p>
-                                        <b>Price: </b>
-                                        <span>$</span>
-                                        {singleBottle.price}
-                                      </p>
-                                      <p>
-                                        <b>Origin: </b> {singleBottle.country}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <footer className="card-footer">
-                                    <>
-                                      <Link
-                                        className="card-footer-item"
-                                        onClick={() => {
-                                          this.props.onDelete(singleBottle._id);
-                                        }}
-                                      >
-                                        Delete
-                                      </Link>
-                                      <Link
-                                        className="card-footer-item"
-                                        to={`/bottle/${singleBottle._id}/edit`}
-                                      >
-                                        Edit
-                                      </Link>
-                                    </>
-                                  </footer>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </section>
-                    
-                    
-                    <section id="dunkles" class="tab-panel">
-                      <div className="middlebox">
-                      {this.state.purchasedWines.map((purchasedBottle) => {
-                  return (
-                    <div>
-                      <div className="subbox">
-                        <div
-                          className="cardo wine-card"
-                          style={{ width: "18em" }}
-                        >
-                          <div className="card-image">
-                            <figure className="image is-4by3">
-                              <img
-                                src={purchasedBottle.image}
-                                style={{ width: "100%" }}
-                                alt="Placeholder image"
-                              />
-                            </figure>
-                          </div>
-                          <div className="card-content">
-                            <div className="media">
-                              <div className="media-content">
-                                <p
-                                  className="title is-4 text-center"
-                                  style={{ height: "1em" }}
-                                >
-                                  <Link to={`/bottle/${purchasedBottle._id}`}>
-                                    <p key={purchasedBottle._id}>
-                                      {purchasedBottle.name}
-                                    </p>
-                                  </Link>
-                                </p>
-                                <p className="subtitle is-6"></p>
-                              </div>
-                            </div>
-
-                            <div className="content">
-                              {/* {bottle.description} */}
-                              <br />
-                              <p>
-                                <b>Vintage:</b> {purchasedBottle.year}
-                              </p>
-                              <p>
-                                <b>Price: </b>
-                                <span>$</span>
-                                {purchasedBottle.price}
-                              </p>
-                              <p>
-                                <b>Origin: </b> {purchasedBottle.country}
-                              </p>
-                            </div>
-                          </div>
-                          <footer className="card-footer">
-                            <>
-                              <Link
-                                to={`/bottle/${purchasedBottle._id}`}
-                                className="card-footer-item"
+                {/* current sales */}
+                <div class="tab-panels">
+                  <section id="marzen" class="tab-panel">
+                    <div className="middlebox">
+                      {this.state.wines.map((singleBottle) => {
+                        return (
+                          <div>
+                            <div className="subbox">
+                              <div
+                                className="cardo wine-card"
+                                style={{ width: "18em" }}
                               >
-                                Info
-                              </Link>
-                            </>
-                          </footer>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-                      </div>
-                    </section>
-                  </div>
-                </div>
+                                <div className="card-image">
+                                  <figure className="image is-4by3">
+                                    <img
+                                      src={singleBottle.image}
+                                      style={{ width: "100%" }}
+                                      alt="Placeholder image"
+                                    />
+                                  </figure>
+                                </div>
+                                <div className="card-content">
+                                  <div className="media">
+                                    <div className="media-content">
+                                      <p
+                                        className="title is-4 text-center text-center"
+                                        style={{ height: "1em" }}
+                                      >
+                                        <Link
+                                          to={`/bottle/${singleBottle._id}`}
+                                        >
+                                          <p key={singleBottle._id}>
+                                            {singleBottle.name}
+                                          </p>
+                                        </Link>
+                                      </p>
+                                      <p className="subtitle is-6"></p>
+                                    </div>
+                                  </div>
 
-            
+                                  <div className="content">
+                                    {/* {bottle.description} */}
+                                    <br />
+                                    <p>
+                                      <b>Vintage:</b> {singleBottle.year}
+                                    </p>
+                                    <p>
+                                      <b>Price: </b>
+                                      <span>$</span>
+                                      {singleBottle.price}
+                                    </p>
+                                    <p>
+                                      <b>Origin: </b> {singleBottle.country}
+                                    </p>
+                                  </div>
+                                </div>
+                                <footer className="card-footer">
+                                  <>
+                                    <Link
+                                      to={`/bottle/${bottle._id}`}
+                                      className="card-footer-item"
+                                    >
+                                      Info
+                                    </Link>
+                                    <Link
+                                      to={`/buy/${bottle._id}`}
+                                      className="card-footer-item"
+                                    >
+                                      Buy
+                                    </Link>
+                                  </>
+                                </footer>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
+
+                  {/* past sales */}
+                  <section id="dunkles" class="tab-panel">
+                    <div className="middlebox">
+                      {this.state.purchasedWines.map((purchasedBottle) => {
+                        return (
+                          <div>
+                            <div className="subbox">
+                              <div
+                                className="cardo wine-card"
+                                style={{ width: "18em" }}
+                              >
+                                <div className="card-image">
+                                  <figure className="image is-4by3">
+                                    <img
+                                      src={purchasedBottle.image}
+                                      style={{ width: "100%" }}
+                                      alt="Placeholder image"
+                                    />
+                                  </figure>
+                                </div>
+                                <div className="card-content">
+                                  <div className="media">
+                                    <div className="media-content">
+                                      <p
+                                        className="title is-4 text-center"
+                                        style={{ height: "1em" }}
+                                      >
+                                        <Link
+                                          to={`/bottle/${purchasedBottle._id}`}
+                                        >
+                                          <p key={purchasedBottle._id}>
+                                            {purchasedBottle.name}
+                                          </p>
+                                        </Link>
+                                      </p>
+                                      <p className="subtitle is-6"></p>
+                                    </div>
+                                  </div>
+
+                                  <div className="content">
+                                    {/* {bottle.description} */}
+                                    <br />
+                                    <p>
+                                      <b>Vintage:</b> {purchasedBottle.year}
+                                    </p>
+                                    <p>
+                                      <b>Price: </b>
+                                      <span>$</span>
+                                      {purchasedBottle.price}
+                                    </p>
+                                    <p>
+                                      <b>Origin: </b> {purchasedBottle.country}
+                                    </p>
+                                  </div>
+                                </div>
+                                <footer className="card-footer">
+                                  <>
+                                    <Link
+                                      to={`/bottle/${purchasedBottle._id}`}
+                                      className="card-footer-item"
+                                    >
+                                      Info
+                                    </Link>
+                                  </>
+                                </footer>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </section>
+                </div>
+              </div>
             </Card.Body>
           </Card>
         </section>
@@ -269,13 +265,6 @@ export default class Profile extends Component {
     );
   }
 }
-
-
-
-
-
-
-
 
 // <div className="middlebox">
 //                 {this.state.wines.map((singleBottle) => {
@@ -417,4 +406,3 @@ export default class Profile extends Component {
 //                   );
 //                 })}
 //               </section>
-            
