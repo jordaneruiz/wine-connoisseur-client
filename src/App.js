@@ -128,6 +128,15 @@ editProfile = (e, profile) => {
     })
 }
 
+  //filter by color
+  whiteColorFilter = () => {
+    let filterByWhiteColor = [...this.state.wines];
+    filterByWhiteColor.filter((wine) => wine.color = "White");
+
+    this.setState({
+      filteredWine: filterByWhiteColor,
+    });
+  };
 
   //Sort wines by year
   sortByYear = () => {
@@ -351,7 +360,7 @@ handleUnMount = () => {
 
         <Switch>
         <Route exact path="/" render={() => {
-              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle}/> 
+              return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
         }} />
         <Route path="/sign-in" render={(rProps) => {
           return <SignIn onUnmount={this.handleUnMount} errorMessage={errorMessage} onSignIn={this.handleSignIn} {...rProps} />

@@ -113,7 +113,7 @@ export default class EditBottle extends Component {
                 <div className="form add-form">
 
                         <input onChange={this.nameChange} className="form-field-add animation a3" value={name} name="name" type="text" placeholder="Enter name"></input>            
-                        <input onChange={this.yearChange} className="form-field-add animation a4" value={year} name="year" type="NUMBER" placeholder="Enter year"></input>
+                        <input onChange={this.yearChange} className="form-field-add animation a4" value={year} name="year" type="number" placeholder="Enter year"></input>
                         <input onChange={this.priceChange} className="form-field-add animation a5" value={price} name="price" type="text" placeholder="Enter price"></input>
                         <input onChange={this.descriptionChange} className="form-field-add animation a6" value={description} name="description" type="text" placeholder="Enter description"></input>
                         <input onChange={this.countryChange} className="form-field-add animation a7" value={country} name="country" type="text" placeholder="Enter country"></input>

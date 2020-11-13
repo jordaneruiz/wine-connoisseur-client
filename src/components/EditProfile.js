@@ -20,6 +20,14 @@ export default class EditProfile extends Component {
       });
   }
 
+  usernameChange = (e) => {
+    let cloneProfile = JSON.parse(JSON.stringify(this.state.profile));
+    cloneProfile.username = e.target.value;
+    this.setState({
+      profile: cloneProfile,
+    });
+  };
+
   bioChange = (e) => {
     let cloneProfile = JSON.parse(JSON.stringify(this.state.profile));
     cloneProfile.bio = e.target.value;
@@ -37,7 +45,7 @@ export default class EditProfile extends Component {
   };
 
   render() {
-    const { bio, location } = this.state.profile;
+    const { username, bio, location } = this.state.profile;
 
     return (
       <div className="body">
@@ -50,33 +58,41 @@ export default class EditProfile extends Component {
                 <h4 className="animation a2">Make it desirable!</h4>
               </div>
               <div className="form">
-                <input
-                  className="form-field "
+              <input onChange={this.usernameChange}
+                  value={username}
+                  className="form-field animation a3"
+                  name="username"
+                  type="text"
+                  placeholder="Enter a new username"
+                ></input>
+                <input onChange={this.bioChange}
+                  className="form-field animation a4"
                   value={bio}
                   name="bio"
                   type="text"
                   placeholder="Enter bio description"
                 ></input>
-                <input
-                  className="form-field "
+                <input onChange={this.locationChange}
+                  className="form-field animation a5"
                   value={location}
                   name="location"
                   type="text"
                   placeholder="Enter location"
                 ></input>
               </div>
+              <button 
+            onClick={(e) => {this.props.onEdit(e, this.state.profile)}}
+            className="form-field btn-hover color-11 animation a6"
+            type="submit"
+          >
+            Save
+          </button>
             </div>
             {/* <div className="right-add"></div> */}
           </div>
         </form>
         <div>
-          <button 
-            onClick={(e) => {this.props.onEdit(e, this.state.profile)}}
-            className="form-field btn-hover color-11 animation a12"
-            type="submit"
-          >
-            Save
-          </button>
+          
         </div>
       </div>
     );

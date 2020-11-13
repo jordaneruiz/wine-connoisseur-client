@@ -109,7 +109,6 @@ export default class Profile extends Component {
 
                   <div class="tab-panels">
                     <section id="marzen" class="tab-panel">
-                      <h2>Current Sales</h2>
                       <div className="middlebox">
                         {this.state.wines.map((singleBottle) => {
                           return (
@@ -191,7 +190,6 @@ export default class Profile extends Component {
                     
                     
                     <section id="dunkles" class="tab-panel">
-                      <h2>SOLD</h2>
                       <div className="middlebox">
                       {this.state.purchasedWines.map((purchasedBottle) => {
                   return (
