@@ -163,13 +163,13 @@ export default class Profile extends Component {
                                 <footer className="card-footer">
                                   <>
                                     <Link
-                                      to={`/bottle/${bottle._id}`}
+                                      to={`/bottle/${singleBottle._id}`}
                                       className="card-footer-item"
                                     >
                                       Info
                                     </Link>
                                     <Link
-                                      to={`/buy/${bottle._id}`}
+                                      to={`/buy/${singleBottle._id}`}
                                       className="card-footer-item"
                                     >
                                       Buy
