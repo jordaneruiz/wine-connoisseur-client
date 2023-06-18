@@ -1,11 +1,12 @@
-import './App.css';
+import logo from './logo.svg';
+import './StyleSheet/App.css';
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Switch , Route, withRouter} from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NaviBar from './components/NaviBar'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
-import NaviBar from './components/NaviBar'
-import Home from './components/Home'
 import WineBottles from './components/WineBottles'
 import BottleDetails from './components/BottleDetails'
 import EditBottle from './components/EditBottle';
@@ -15,15 +16,31 @@ import UserProfile from './components/UserProfile';
 import EditProfile from './components/EditProfile';
 import BuyBottle from './components/BuyBottle';
 import {API_URL} from './config'
+// function App() {
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//       <div>
+//       <NaviBar />
+//       {/* <WineBottles />
+//       <SignIn />
+//       <SignUp /> */}
+//         <p></p>
+//       </div>
 
-import { Spinner } from "react-bootstrap"; //this is a name export not a default export so you have to use the curly braces
+//       <Routes>
+//         <Route exact path="/" render={() => {
+//               return <WineBottles /*loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
+//         }} />
+//       </Routes>
+//       </header>
+//     </div>
+//   );
+// }
 
 
-// import BuyBottleForm from "./components/BuyBottleForm";
 
 
-
-//import {API_URL} from './config'
 
 
 
@@ -348,9 +365,9 @@ handleUnMount = () => {
 
     const {loggedInUser, errorMessage, wines, filteredWine, showPage} = this.state
 
-    if (!showPage) {
-      return <Spinner animation="grow" variant="danger" style= {{marginLeft: "50px"}}/>
-    }
+    // if (!showPage) {
+    //   return <Spinner animation="grow" variant="danger" style= {{marginLeft: "50px"}}/>
+    // }
 
     return (
       <div>
@@ -358,7 +375,7 @@ handleUnMount = () => {
         <p></p>
         {/* {loggedInUser ? <p>User is: {loggedInUser.username} </p>: <p>null</p>} */}
 
-        <Switch>
+        <Routes>
         <Route exact path="/" render={() => {
               return <WineBottles loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
         }} />
@@ -407,10 +424,15 @@ handleUnMount = () => {
         }}/> */}
 
         {/* <Route path="" */}
-     </Switch>
+     </Routes>
       </div>
     )
   }
 }
 
-export default withRouter(App)
+
+
+
+export default App;
+
+

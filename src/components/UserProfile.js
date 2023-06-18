@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 import { Card, Button } from "react-bootstrap";
+
+
+const navigate = useNavigate();
 
 export default class Profile extends Component {
   state = {
@@ -11,6 +14,7 @@ export default class Profile extends Component {
     purchasedWines: [],
     soldBottles: [],
   };
+
 
   componentDidMount() {
     let id = this.props.match.params.userId;
@@ -67,11 +71,11 @@ export default class Profile extends Component {
     const { username, bio, location } = this.state.profile;
 
     if (!loggedInUser) {
-      return <Redirect to={"/sign-in"} />;
+      return navigate("/sign-in");
     }
 
     if (loggedInUser._id === this.state.profile._id) {
-      return <Redirect to={"/profile"} />;
+      return navigate("/profile");
     }
 
     return (

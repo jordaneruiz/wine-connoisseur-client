@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import "../App.css";
-import "./signin-style";
+import "../StyleSheet/signin.css";
+// import "../StyleSheet/App.css";
 
 export default function SignIn(props) {
   //props.errorMessage
@@ -9,29 +9,44 @@ export default function SignIn(props) {
   }, []);
 
   return (
-    <section className="margin-form">
-    <form onSubmit={props.onSignIn}>
-        <div className="container" /*style={{marginTop: "100px"}}*/>
-        <div className="left">
-            <div className="header">
-            <h2 className="animation a1">Welcome Back</h2>
-            <h4 className="animation a2">Log in to your account using email and password</h4>
-            </div>
-            <div className="form">
-            <input name="email" onChange={props.onUnmount} type="text" className="form-field animation a3" placeholder="Email Address"/>
-            <input name="password" type="password" className="form-field animation a4" placeholder="Password"/>
-            <p className="animation a5"><a href="#">Forgot Password</a></p>
-            {/* <button type="submit" className="animation a6">LOGIN</button> */}
-            <div className="bbuttons"><button type="submit" className="btn-hover color-11 animation a6">LOGIN</button></div>
-            {props.errorMessage ? (
-        <p style={{ color: "red" }}>{props.errorMessage}</p>
-      ) : null}
-      </div>
-        </div>
-        <div className="right-signin"></div>
-        </div>
+    <body>
+    <div class="container centerDiv">
+    <h2 class="login-title">Welcome Back</h2>
+    <p class="">Log in to your account using email and password</p>
 
+    <form class="login-form">        
+      <div>
+        <label for="email">Email </label>
+        <input
+               id="email"
+               type="email"
+               placeholder="me@example.com"
+               name="email"
+               required
+               />
+      </div>
+
+      <div>
+        <label for="password">Password </label>
+        <input
+               id="password"
+               type="password"
+               placeholder="password"
+               name="password"
+               required
+               />
+      </div>
+
+      <button class="btn btn--form" type="submit" value="Log in">
+        Log in
+      </button>
+      {/* {props.errorMessage ? (
+        <p style={{ color: "red" }}>{props.errorMessage}</p>
+      ) : null} */}
+      <p className=""><a href="#">Forgot Password</a></p>
+      <p className="">Don't have an account yet? <a href="#">Signup!</a></p>
     </form>
-    </section>
+</div>
+</body>
   );
 }

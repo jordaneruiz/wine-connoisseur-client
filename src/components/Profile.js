@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 import { Card, Col, Row, Container } from "react-bootstrap";
 
@@ -106,7 +106,7 @@ export default class Profile extends Component {
     // const {username} = this.state.profile
 
     if (!loggedInUser) {
-      return <Redirect to={"/sign-in"} />;
+      return useNavigate("/sign-in");
     }
 
     if (!this.state.profile) {

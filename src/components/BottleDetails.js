@@ -1,6 +1,6 @@
 import Axios from "axios";
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 
 export default class BottleDetails extends Component {
@@ -47,7 +47,7 @@ export default class BottleDetails extends Component {
     const { loggedInUser } = this.props;
 
     if (!loggedInUser) {
-      return <Redirect to={"/sign-in"} />;
+      return useNavigate("/sign-in");
     }
 
     return (
