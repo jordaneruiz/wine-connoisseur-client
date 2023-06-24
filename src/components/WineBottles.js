@@ -1,58 +1,84 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
-import "bulma/css/bulma.css";
-import { Carousel, Jumbotron, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Carousel, Dropdown, Container, Row, Col, Card, Button } from "react-bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import '../StyleSheet/App.css'; // Import Navbar styles
 
 export default function WineBottles(props) {
-console.log(props.wines);
-console.log("props.wines: ", props.wines)
-// console.log("props.loggedInUser", props.loggedInUser)
+  // console.log(props.wines);
+  // console.log("props.wines: ", props.wines)
+  // console.log("props.loggedInUser", props.loggedInUser)
 
   return (
-    <body className="body">
-      <Carousel >
+    <div className="body">
+
+      <Carousel fade>
+
         <Carousel.Item>
           <img className="d-block w-100" src="WINE3.png" alt="First slide" />
           <Carousel.Caption>
-          <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
+            {/* <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input>  */}
+            <div>
+              <h1>Exceptionnal Vintage Wines</h1>
+              <h3>waiting to find a new owner</h3>
+            </div>
+            <div>
+            {/* <p>Quick Search</p> */}
+            {/* </div>
+            <div className="quickSearchFilters">
+              <div className="input-group">
+                <input className="filter form-control" type="text" placeholder="Wine name"></input>
+              </div>
+              <div className="input-group">
+                <input className="filter form-control" type="text" placeholder="Year"></input>
+              </div>
+              <div className="input-group">
+                <Dropdown className="filter dropDown-title">
+                  <Dropdown.Toggle variant="light" id="dropdown-basic" >
+                    <span>Color</span>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Red</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">White</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Rosé</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Other</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div> */}
 
+            </div>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-          <img className="d-block w-100" src="WINE1.png" alt="Third slide" />
 
-          <Carousel.Caption>
-          <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
-
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <img className="d-block w-100" src="WINE2.png" alt="Third slide" />
 
           <Carousel.Caption>
           <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input> 
-
+          <h3>Exceptionnal Vintage Wines...</h3>
+          <p>...waiting to find a new owner</p>
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
+      {/* <Container fluid="md" style="position: relative">
+      <Row>
+        <Col><img className="d-block w-100" src="WINE3.png" alt="First slide" /></Col>
+                  
 
-      <Jumbotron>
+      </Row>
+    </Container> */}
+      {/* <Jumbotron>
       <h1>Wine Connoisseur</h1>
             <p>Exceptionnal Vintage Wines waiting to find a new owner.</p>
       <div className="filterbox">     
         <div><button type="submit" class="btn-hover color-11"><Link to={"/add-bottle"} style={{color: "white"}}>Sell a bottle</Link></button></div>
         <div><button onClick={() => {props.onClick(props.sortByYear)}} type="submit" class="btn-hover color-11" style={{color: "white"}}>Filter by Year</button></div>
         <div><button onClick={() => {props.onClick(props.sortByPrice)}} type="submit" class="btn-hover color-11" style={{color: "white"}}>Filter by Price</button></div>
-        {/* <div><button onClick={() => {props.onClick(props.whiteColorFilter)}} type="submit" class="btn-hover color-11" style={{color: "white"}}>White wines</button></div> */}
-
       </div> 
-        {/* <input className="searchBar" onChange={props.onChange} type="text" placeholder="Search"></input>  */}
-
       </Jumbotron>
+ */}
 
-      <div className="box">
+      {/* <div className="box">
         
         
         <div>{props.loggedInUser ? <h2> {props.loggedInUser.username}, it's time to buy some treasure</h2> : <p>Time to buy some treasure</p>}</div>
@@ -63,7 +89,6 @@ console.log("props.wines: ", props.wines)
           {props.wines.map((bottle) => {
             return (
               
-              //{ bottle.userSeller !== props.loggedInUser._id ? ... : ... }
               
               <div>
                 <div className="subbox">
@@ -86,7 +111,6 @@ console.log("props.wines: ", props.wines)
                       </div>
 
                       <div className="content">
-                        {/* {bottle.description} */}
                         <br />
                         <p>
                           <b>Vintage: </b> {bottle.year}
@@ -100,7 +124,6 @@ console.log("props.wines: ", props.wines)
                           <b>Origin: </b>
                           {bottle.country}
                         </p>
-                        {/* <time datetime="2016-1-1">1 Jan 2016</time> */}
                       </div>
                     </div>
                     <footer className="card-footer">
@@ -162,45 +185,23 @@ console.log("props.wines: ", props.wines)
             );
           })}
         </div>
+      </div> */}
+
+      <div style={{border: "pink 2px solid", height: "400px"}}>
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button variant="primary">Go somewhere</Button>
+      </Card.Body>
+    </Card>
       </div>
-    </body>
+    </div>
   );
 }
 
-//export default withRouter(WineBottles)
 
-// <Link to={`/bottle/${bottle._id}`}>
-//                         <p key={bottle._id}>{bottle.name}</p>
-//                         </Link>
-
-
-
-{/* 
-{ 
-
-(!props.loggedInUser) ?    
-  <>
-  <a href="#" className="card-footer-item">
-  Save
-</a>
-<Link
-  to={`/bottle/${bottle._id}`}
-  className="card-footer-item"
->
-  Info
-</Link>
-<Link
-  to={`/buy/${bottle._id}`}
-  className="card-footer-item"
->
-  Buy
-  </Link>
-</>
-: props.loggedInUser._id !== bottle.userSeller ?
-<>
-  <Link className="card-footer-item" onClick={() => { this.props.onDelete(props.wines._id) }}>Delete</Link>
-  <Link className="card-footer-item" to={`/bottle/${bottle._id}/edit`}>Edit</Link>
-</>
-
-
-} */}

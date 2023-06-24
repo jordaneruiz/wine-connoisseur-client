@@ -1,122 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import 'bulma/css/bulma.css'
-import { Navbar,  Form, FormControl, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Form, Button } from 'react-bootstrap';
+import '../StyleSheet/Navbar.css'; // Import Navbar styles
+
 
 export default function NaviBar(props) {
   return (
+    //#97114C
+
+    <Navbar className="navbar" fixed="top" bg="dark" expand="lg" variant="dark">
+    <Container fluid>
+      <Navbar.Brand  style={{ color: "#FFFFFF"}} href="#"><img src="Images/logo192.png" style={{ height: "50px", marginRight: "20px"}} />WINE C.</Navbar.Brand>
+      <Navbar.Toggle aria-controls="" />
+      <Navbar.Collapse id=""> 
+        <Nav
+          className="me-auto my-2 my-lg-0"
+          style={{ maxHeight: '100px' }}
+          
+        >
+          <Nav.Link  href="#action1">Home</Nav.Link>
+          <Nav.Link  href="#action2">Sell</Nav.Link>
+          <Nav.Link  href="#action2">Profile</Nav.Link>
+          <NavDropdown  title="Link" id="navbarScrollingDropdown">
+            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">
+              Signin
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action5">
+              Signup
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        {/* <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+          <Button variant="outline-success">Search</Button>
+        </Form> */}
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
 
 
-      <>
-        <Navbar fixed="top" style={{backgroundColor: "#6e0d25", height: "5em", textColor: "#FFFFFF", marginBottom: "-30px"}} className="BackNav" bg="" variant="dark" >
-          <Navbar.Brand><img src="LOGOWINECOR.png" style={{height: "70px"}}/></Navbar.Brand>
-          {/* <Link className="" to="/" className="">
-      <img src="LogoW1.png"/>
-  </Link> */}
-          <Nav className="mr-auto">
-            {/* <Nav.Link to="/" className=" has-text-white">Home</Nav.Link>
-            <Nav.Link to={"/add-bottle"} className=" has-text-white" >Sell</Nav.Link>
-            <Nav.Link to={"/profile"} className=" has-text-white" >Profile</Nav.Link> */}
-            <Link className="has-text-white" style={{paddingRight: "15px"}} to="/">Home</Link>
-            <Link className="has-text-white" style={{paddingRight: "15px"}} to={"/add-bottle"}>Sell</Link>
-            <Link className="has-text-white" style={{paddingRight: "15px"}} to={"/profile"}>Profile</Link>
-          </Nav>
-            <div className="logbtn">
-            { props.loggedInUser ? (
-               <button className="mr-sm-2" variant="outline-primary" className="button is-light has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} onClick={props.onLogout}>Logout</button>
-                ) : (
-                <>
-                <Link className="mr-sm-2" variant="outline-primary" className="logbtn1 button is-primary has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} to="/sign-in">Sign In</Link>
-                <Link className="mr-sm-2" variant="outline-primary" className="logbtn2 button is-primary has-background-light has-text-danger-dark" style={{height: "25px", width: "70px"}} to="/sign-up">Sign Up</Link>            
-                </>
-              )}
-          </div>
-        </Navbar>
-      </> 
 
-
-
-
-
-
-
-
-      // {/* <Link to="/">Home</Link>
-
-      // { props.loggedInUser ? (
-      //   <button onClick={props.onLogout}>Logout</button>
-      // ) : (
-      //   <>
-      //     <Link to="/sign-in">Sign In</Link>
-      //     <Link to="/sign-up">Sign Up</Link>
-      //   </>
-      // )} */}
-      // {/* <Link to="/Sign-in">Sign In</Link>
-      //       <Link to="/Sign-up">Sign Up</Link>
-      //       <button>Logout</button> */}
-   
   );
 }
 
 
-
-// <>
-//   <Navbar bg="light" variant="light">
-//     <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-//     <Nav className="mr-auto">
-//       <Nav.Link href="#home">Home</Nav.Link>
-//       <Nav.Link href="#features">Features</Nav.Link>
-//       <Nav.Link href="#pricing">Pricing</Nav.Link>
-//     </Nav>
-//     <Form inline>
-//       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-//       <Button variant="outline-primary">Search</Button>
-//     </Form>
-//   </Navbar>
-// </> 
-// import { Navbar,  Form, FormControl, Nav, Button } from 'react-bootstrap';
-
-
-
-
-
-
-
-
-
-{/* <nav className="navbar is-fixed-top has-background-danger-dark height" role="navigation" aria-label="main navigation">
-  <div className="navbar-brand">
-  <Link className="" to="/" className="">
-      <img src="LogoW1.png"/>
-  </Link>
-
-    <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" className="navbar-menu ">
-    <div className="navbar-start">
-      <Link className=" has-text-white" to="/">Home</Link>
-      <Link className=" has-text-white" to={"/add-bottle"}>Sell</Link>
-      <Link className=" has-text-white" to={"/profile"}>Profile</Link>
-    </div>
-
-    <div className="navbar-end">
-      <div className="">
-        <div className="buttons">
-        { props.loggedInUser ? (
-        <button className="button is-light has-background-light has-text-danger-dark" onClick={props.onLogout}>Logout</button>
-      ) : (
-        <>
-          <Link className="button is-primary has-background-light has-text-danger-dark" to="/sign-in">Sign In</Link>
-          <Link className="button is-primary has-background-light has-text-danger-dark" to="/sign-up">Sign Up</Link>
-          </>
-      )}
-        </div>
-      </div>
-    </div>
-  </div>
-</nav> */}

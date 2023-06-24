@@ -3,7 +3,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { API_URL } from "../config";
 import axios from "axios";
 import { Card, Button } from "react-bootstrap";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function CheckoutForm(props) {
@@ -160,4 +160,4 @@ function CheckoutForm(props) {
   );
 }
 
-export default withRouter(CheckoutForm);
+export default CheckoutForm;

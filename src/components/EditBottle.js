@@ -11,7 +11,7 @@ export default class EditBottle extends Component {
     componentDidMount() {
         //we want to retrieve the date of the bottle the user wants to update
         let bottleId = this.props.match.params.bottleId
-        axios.get(`${API_URL}/bottle/${bottleId}`, {withCredentials: true})
+        axios.get(`${API_URL}/bottle/${bottleId}`, /*{withCredentials: true}*/)
             .then((response) => {
                 console.log("response is: ", response)
                 this.setState({

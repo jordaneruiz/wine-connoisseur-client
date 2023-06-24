@@ -1,13 +1,14 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function AddBottle(props) {
+    const navigate = useNavigate();
 
     //props.onAdd = function
 
         if (!props.loggedInUser){
             //render method always return something
-            return <Redirect to={'/sign-in'}/>
+            return navigate('/sign-in')
         }
 
     return (
