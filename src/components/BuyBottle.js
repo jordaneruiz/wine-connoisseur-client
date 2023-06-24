@@ -24,7 +24,7 @@ componentDidMount() {
     
     let id = this.props.match.params.bottleId
 
-    Axios.get(`${API_URL}/bottle/${id}`, {withCredentials: true})
+    Axios.get(`${API_URL}/bottle/${id}`, /*{withCredentials: true}*/)
         .then((resp) => {
             console.log("resp is : ", resp)
             this.setState({

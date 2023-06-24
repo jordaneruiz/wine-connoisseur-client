@@ -11,12 +11,12 @@ export default function NaviBar(props) {
     <Navbar className="navbar" fixed="top" bg="dark" expand="lg" variant="dark">
     <Container fluid>
       <Navbar.Brand  style={{ color: "#FFFFFF"}} href="#"><img src="Images/logo192.png" style={{ height: "50px", marginRight: "20px"}} />WINE C.</Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbarScroll" />
-      <Navbar.Collapse id="navbarScroll">
+      <Navbar.Toggle aria-controls="" />
+      <Navbar.Collapse id=""> 
         <Nav
           className="me-auto my-2 my-lg-0"
           style={{ maxHeight: '100px' }}
-          navbarScroll
+          
         >
           <Nav.Link  href="#action1">Home</Nav.Link>
           <Nav.Link  href="#action2">Sell</Nav.Link>
