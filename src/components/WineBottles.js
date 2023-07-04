@@ -4,10 +4,10 @@ import { Carousel, Dropdown, Container, Row, Col, Card, Button } from "react-boo
 // import "bootstrap/dist/css/bootstrap.min.css";
 import '../StyleSheet/App.css'; // Import Navbar styles
 
-export default function WineBottles(props) {
-  // console.log(props.wines);
-  // console.log("props.wines: ", props.wines)
-  // console.log("props.loggedInUser", props.loggedInUser)
+const WineBottles = (props) => {
+  const { wines } = props; // Retrieve the wines prop
+  console.log("00 wines: ", wines)
+
 
   return (
     <div className="body">
@@ -78,7 +78,7 @@ export default function WineBottles(props) {
       </Jumbotron>
  */}
 
-      {/* <div className="box">
+      <div className="box">
         
         
         <div>{props.loggedInUser ? <h2> {props.loggedInUser.username}, it's time to buy some treasure</h2> : <p>Time to buy some treasure</p>}</div>
@@ -90,22 +90,22 @@ export default function WineBottles(props) {
             return (
               
               
-              <div>
+              <div key={bottle._id}>
                 <div className="subbox">
                   <div className="cardo wine-card" style={{ width: "18em"}}>
                     <div className="card-image">
                       <figure className="image is-4by3">
-                        <img src={bottle.image} alt="Placeholder image" />
+                        {/* <img src={bottle.image} alt="Placeholder image" /> */}
                       </figure>
                     </div>
                     <div className="card-content">
                       <div className="media">
                         <div className="media-content">
-                          <p className="title is-4 text-center" style={{ height: "2em"}}>
+                          <div className="title is-4 text-center" style={{ height: "2em"}}>
                             <Link to={`/bottle/${bottle._id}`}>
-                              <p key={bottle._id}>{bottle.name}</p>
+                              <p>{bottle.name}</p>
                             </Link>
-                          </p>
+                          </div>
                           <p className="subtitle is-6"></p>
                         </div>
                       </div>
@@ -179,13 +179,10 @@ export default function WineBottles(props) {
 
 
 
-
-
-
             );
           })}
         </div>
-      </div> */}
+      </div>
 
       <div style={{border: "pink 2px solid", height: "400px"}}>
       <Card style={{ width: '18rem' }}>
@@ -204,4 +201,5 @@ export default function WineBottles(props) {
   );
 }
 
+export default WineBottles;
 

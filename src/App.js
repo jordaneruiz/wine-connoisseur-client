@@ -30,88 +30,90 @@ function App() {
   const [profile, setProfile] = useState(null);
 
   const navigate = useNavigate();
+  console.log("filteredWine is: ", filteredWine)
+
+  useEffect(() => {
+    // Check if the user is logged in or not
+    // if (!loggedInUser) {
+    //   axios.get(`${API_URL}/user`)
+    //     .then((response) => {
+    //       setLoggedInUser(response.data);
+    //     });
+    //   getBottles();
+    // } else {
+      getBottles();
+    // }
+
+    // Fetch logged in user information displayed on profile
+    // if (!profile) {
+    //   axios.get(`${API_URL}/profile`)
+    //     .then((resp) => {
+    //       setProfile(resp.data);
+    //     });
+    // }
+  }, []);
+
+  const getBottles = () => {
+    axios.get(`${API_URL}/bottles`)
+      .then((response) => {
+
+        console.log("response;data is: ", response.data)
+        setWines(response.data);
+        setFilteredWine(response.data);
+        setShowPage(true);
+      });
+  };
+
+  const editProfile = (e, profile) => {
+    e.preventDefault();
+
+    axios.patch(
+      `${API_URL}/profile/edit`,
+      {
+        username: profile.username,
+        bio: profile.bio,
+        location: profile.location,
+      }
+    )
+      .then((updateProfile) => {
+        setProfile(updateProfile);
+        // Redirect to profile page
+        // this.props.navigate.push("/profile");
+      });
+  };
+
+  const searchBottle = (event) => {
+    const searchText = event.target.value;
+
+    const filteredWine = wines.filter((bottle) => {
+      return bottle.name.toLowerCase().includes(searchText.toLowerCase());
+    });
+
+    setFilteredWine(filteredWine);
+  };
 
 
-  // useEffect(() => {
-  //   // Check if the user is logged in or not
-  //   if (!loggedInUser) {
-  //     axios.get(`${API_URL}/user`)
-  //       .then((response) => {
-  //         setLoggedInUser(response.data);
-  //       });
-  //     getBottles();
-  //   } else {
-  //     getBottles();
-  //   }
 
-  //   // Fetch logged in user information displayed on profile
-  //   if (!profile) {
-  //     axios.get(`${API_URL}/profile`)
-  //       .then((resp) => {
-  //         setProfile(resp.data);
-  //       });
-  //   }
-  // }, []);
+  const whiteColorFilter = () => {
+    const filterByWhiteColor = [...wines];
+    filterByWhiteColor.filter((wine) => (wine.color = 'White'));
 
-  // const getBottles = () => {
-  //   axios.get(`${API_URL}/bottles`)
-  //     .then((response) => {
-  //       setWines(response.data);
-  //       setFilteredWine(response.data);
-  //       setShowPage(true);
-  //     });
-  // };
+    setFilteredWine(filterByWhiteColor);
+  };
 
-  // const editProfile = (e, profile) => {
-  //   e.preventDefault();
+  const sortByYear = () => {
+    const sortWinesByYear = [...wines];
+    sortWinesByYear.sort((a, b) => b.year - a.year);
 
-  //   axios.patch(
-  //     `${API_URL}/profile/edit`,
-  //     {
-  //       username: profile.username,
-  //       bio: profile.bio,
-  //       location: profile.location,
-  //     }
-  //   )
-  //     .then((updateProfile) => {
-  //       setProfile(updateProfile);
-  //       // Redirect to profile page
-  //       // this.props.navigate.push("/profile");
-  //     });
-  // };
+    setFilteredWine(sortWinesByYear);
+  };
 
-  // const searchBottle = (event) => {
-  //   const searchText = event.target.value;
+  const sortByPrice = () => {
+    const sortWinesByPrice = [...wines];
+    sortWinesByPrice.sort((a, b) => a.price - b.price);
 
-  //   const filteredWine = wines.filter((bottle) => {
-  //     return bottle.name.toLowerCase().includes(searchText.toLowerCase());
-  //   });
-
-  //   setFilteredWine(filteredWine);
-  // };
-
-
-
-  // const whiteColorFilter = () => {
-  //   const filterByWhiteColor = [...wines];
-  //   filterByWhiteColor.filter((wine) => (wine.color = 'White'));
-
-  //   setFilteredWine(filterByWhiteColor);
-  // };
-
-  // const sortByYear = () => {
-  //   const sortWinesByYear = [...wines];
-  //   sortWinesByYear.sort((a, b) => b.year - a.year);
-
-  //   setFilteredWine(sortWinesByYear);
-  // };
-
-  // const sortByPrice = () => {
-  //   const sortWinesByPrice = [...wines];
-  //   sortWinesByPrice.sort((a, b) => a.price - b.price);
-
-  //   setFilteredWine(sortWinesByPrice);
-  // };
+    setFilteredWine(sortWinesByPrice);
+  };
 
   const addBottle = (e) => {
     e.preventDefault();
@@ -227,23 +229,26 @@ function App() {
 
 
   return (
+    
     <div className="App">
       <header className="App-header">
       <div>
       <NaviBar />
-      <WineBottles />
-      {/* <SignIn /> */}
+      
+      <SignIn />
       {/* <SignUp />  */}
-        <p></p>
-      </div>
-
+      {/*<WineBottles wines={filteredWine}  wines={this.getBottles}  loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}/> */}
       <Routes>
         <Route exact path="/" render={() => {
-              return <WineBottles /*loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
+              return <WineBottles wines={filteredWine} /* wines={this.getBottles}  loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
         }} />
 
         <Route path="/add-bottle" render={(rprops) => {
           return <AddBottle /*loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}*//>
+        }}/>
+
+        <Route path="/bottles" render={(rprops) => {
+          return <WineBottles /*loggedInUser={loggedInUser} onAdd={this.addBottle} {...rprops}*//>
         }}/>
 
         <Route exact path="/bottle/:bottleId" render={(rProps) => {
@@ -252,10 +257,36 @@ function App() {
 
 
       </Routes>
+      </div>
+
       </header>
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
