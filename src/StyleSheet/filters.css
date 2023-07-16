@@ -1,0 +1,102 @@
+.filterbox {
+    height: 100%;
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filter-btn {
+    text-align: center;
+    /* border: solid 2px pink;
+    width: 50px;
+    height: 100px; */
+
+  }
+  
+
+  /* background-image: linear-gradient(#fc6464 , #fc6464); */
+  section {
+	margin: 27px auto 0;
+
+	position: relative;
+	width: 420px;
+	height: 50px;
+	background-color: #faf2eb;
+	border-radius: 20px;
+	font-size: 0;
+}
+section Button {
+	line-height: 50px;
+	height: 100%;
+	font-size: 10px;
+	display: inline-block;
+	position: relative;
+	z-index: 1;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+
+}
+section .animation {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	z-index: 0;
+	transition: all .5s ease 0s;
+	border-radius: 20px;
+    
+}
+Button:nth-child(1) {
+	width: 100px;
+}
+Button:nth-child(2) {
+	width: 100px;
+}
+Button:nth-child(3) {
+	width: 100px;
+    
+}
+Button:nth-child(4) {
+	width: 100px;
+}
+section .start-white, Button:nth-child(1):hover~.animation {
+	width: 100px;
+	left: 0;
+	background-color: #fc6464;
+}
+section .start-red, Button:nth-child(2):hover~.animation {
+	width: 100px;
+	left: 100px;
+	background-color: #fc6464;
+    color:#faf2eb
+}
+
+
+Button:nth-child(1):hover {
+    color:#faf2eb
+}
+Button:nth-child(2):hover {
+    color:#faf2eb
+}
+Button:nth-child(3):hover {
+    color:#faf2eb
+}
+Button:nth-child(4):hover {
+    color:#faf2eb
+}
+
+
+
+section .start-rosé, Button:nth-child(3):hover~.animation {
+	width: 100px;
+	left: 210px;
+	background-color: #fc6464;
+}
+section .start-sparkling, Button:nth-child(4):hover~.animation {
+	width: 100px;
+	left: 310px;
+	background-color: #fc6464;
+}

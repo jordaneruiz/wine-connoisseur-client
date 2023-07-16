@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "../StyleSheet/signin.css";
 // import "../StyleSheet/App.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function SignIn(props) {
   //props.errorMessage
@@ -10,13 +11,13 @@ export default function SignIn(props) {
 
   return (
     <body>
-    <div class="container centerDiv">
-    <h2 class="login-title">Welcome Back</h2>
-    <p class="">Log in to your account using email and password</p>
-
-    <form class="login-form">        
+    <div className="container centerDiv">
+    {/* <FontAwesomeIcon icon="fa-duotone fa-lock" style={{"--fa-primary-color": "#ffffff", "--fa-secondary-color": "#c12f46",}} /> */}
+    <h2 className="login-title">Welcome Back</h2>
+    <p className="text">Log in to your account using email and password</p>
+    <form className="login-form">        
       <div>
-        <label for="email">Email </label>
+        {/* <label for="email">Email </label> */}
         <input
                id="email"
                type="email"
@@ -27,24 +28,24 @@ export default function SignIn(props) {
       </div>
 
       <div>
-        <label for="password">Password </label>
+        {/* <label for="password">Password </label> */}
         <input
                id="password"
                type="password"
-               placeholder="password"
+               placeholder="Password"
                name="password"
                required
                />
       </div>
 
-      <button class="btn btn--form" type="submit" value="Log in">
+      <button className="btn btn--form" type="submit" value="Log in">
         Log in
       </button>
       {/* {props.errorMessage ? (
         <p style={{ color: "red" }}>{props.errorMessage}</p>
       ) : null} */}
-      <p className=""><a href="#">Forgot Password</a></p>
-      <p className="">Don't have an account yet? <a href="#">Signup!</a></p>
+      <p className="text"><a href="#">Forgot Password</a></p>
+      <p className="text">Don't have an account yet? <a href="#">Signup!</a></p>
     </form>
 </div>
 </body>

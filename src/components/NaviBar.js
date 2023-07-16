@@ -6,9 +6,7 @@ import '../StyleSheet/Navbar.css'; // Import Navbar styles
 
 export default function NaviBar(props) {
   return (
-    //#97114C
-
-    <Navbar className="navbar" fixed="top" bg="dark" expand="lg" variant="dark">
+    <Navbar className="navbar" fixed="top" bg="" expand="lg" variant="dark">
     <Container fluid>
       <Navbar.Brand  style={{ color: "#FFFFFF"}} href="#"><img src="Images/logo192.png" style={{ height: "50px", marginRight: "20px"}} />WINE C.</Navbar.Brand>
       <Navbar.Toggle aria-controls="" />

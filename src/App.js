@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './StyleSheet/App.css';
 import React, { Component, useState, useEffect } from 'react'
 import axios from 'axios'
@@ -94,11 +94,15 @@ function App() {
 
 
 
-  const whiteColorFilter = () => {
-    const filterByWhiteColor = [...wines];
-    filterByWhiteColor.filter((wine) => (wine.color = 'White'));
+  const colorFilter = (selectedColor) => {
+    console.log(" 1 selectedColor: ", selectedColor)
 
-    setFilteredWine(filterByWhiteColor);
+    const filterByWhiteColor = [...wines];
+
+    let wineWines = filterByWhiteColor.filter((wine) => (wine.color === selectedColor));
+    console.log(" 1 wineWines: ", wineWines)
+
+    setFilteredWine(wineWines);
   };
 
   const sortByYear = () => {
@@ -229,15 +233,22 @@ function App() {
 
 
   return (
-    
+  //   <div className="App">
+  //     <header className="App-header">
+  //     <div>
+  //     <NaviBar />
+  //     <SignIn /> 
+  //     </div>
+  //   </header>
+  // </div>
     <div className="App">
       <header className="App-header">
       <div>
       <NaviBar />
       
-      <SignIn />
+      {/* <SignIn /> */}
       {/* <SignUp />  */}
-      {/*<WineBottles wines={filteredWine}  wines={this.getBottles}  loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}/> */}
+      <WineBottles wines={filteredWine} onClick={colorFilter}  /* loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//>
       <Routes>
         <Route exact path="/" render={() => {
               return <WineBottles wines={filteredWine} /* wines={this.getBottles}  loggedInUser={loggedInUser} wines={filteredWine} onClick={this.sortByYear} onClick={this.sortByPrice} onEdit={this.editBottle} onDelete={this.deleteBottle} onChange={this.searchBottle} /*onClick={this.whiteColorFilter}*//> 
